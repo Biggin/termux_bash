@@ -2,17 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-## ANSI color codes stored in variables for easy implementation
-#cya='\e[0;36m'
-#gre='\e[0;34m'
-#ogn='\033[92m\e[0;47m'
-#agrn='\e[2;32m'
-awhi='\e[2;37m'
-#ared='\e[2;31m'
-#ayel='\e[2;33m'
-#BLK='\e[33;0m\e[0;47m'
+#-------------------------------------------------------------------------#
+  #=====================================================================#
+          #############--My Awesome Login Banner--#############
+  #=====================================================================#
+#-------------------------------------------------------------------------#
 
-## Testing colors
+## Regular colors ##
 blk='\e[0;30m'
 red='\e[0;31m'
 grn='\e[0;32m'
@@ -21,8 +17,9 @@ blu='\e[0;34m'
 mag='\e[0;35m'
 cya='\e[0;36m'
 whi='\e[0;37m'
+awhi='\e[2;37m'
 
-## Bright colors
+## Bright colors ##
 bbla='\e[1;90m'
 bred='\e[1;91m'
 bgrn='\e[1;92m'
@@ -51,48 +48,51 @@ echo""
 echo""
 echo""
 
-
-# If not running interactively, don't do anything
+## If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoredups:ignorespace
+## Don't put duplicate lines or lines starting with space in the history.
+## See bash for more options
+HISTCONTROL=ignoreboth:ignoredupes:ignorespace:ignoredups
 
-# append to the history file, don't overwrite it
+## Append to the history file, don't overwrite it
 shopt -s histappend
+shopt -s histreedit
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+## For setting history length see HISTSIZE and HISTFILESIZE in bash
 HISTSIZE=200
 HISTFILESIZE=500
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+## Check the window size after each command and, if necessary,
+## update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+## If set, the pattern "**" used in a pathname expansion context will
+## match all files and zero or more directories and subdirectories.
+##shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+## Make less more friendly for non-text input files, see lesspipe
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
+#-------------------------------------------------------------------------#
+   #############-To Set the Command Prompt, thanks ParrotOS-############
+#-------------------------------------------------------------------------#
+## set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
+## set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+## Uncomment for a colored prompt, if the terminal has the capability. It's
+## turned off by default to not distract the user: the focus in a terminal
+## window should be on the output of commands, not on the prompt.
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -105,69 +105,109 @@ if [ -n "$force_color_prompt" ]; then
 	color_prompt=
     fi
 fi
+
 if [ "$color_prompt" = yes ]; then
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+   
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]\[\033[33m\]@\[\033[01;35m\]\h\[\033[00m\]\[\033[01;37m\]:\[\033[01;33m\][\[\033[00m\]\[\033[37m\]\w\[\033[01;33m\]]\[\033[00m\]\[\033[37m\]\$\[\033[00m\] '
+    ##PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
-    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
+## If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[0;39m\]\u\[\033[01;33m\]@\[\033[01;96m\]\h'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$\[\e[0m\]"
-    #PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -AFC --color=always'
-    alias dir='dir -dULsh --color=always'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep -RUn --text --color=always'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
+#-------------------------------------------------------------------------#
+   ###############-Environment Variables for My Linux Machine###########
+#-------------------------------------------------------------------------#
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export OUT_DIR="/home/tux/Android/out"
-export OUT_DIR_COMMON_BASE="/home/tux/Android/out"
-#export ANDROID_PRODUCT_OUT"/home/tux/Android/out"
-export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
-export STUDIO_JDK="/home/tux/Android/studio/android-studio/jre"
-export ANDROID_SDK_ROOT="/home/tux/Android/studio/sdk"
-export USE_CCACHE="1"
 
-# some more ls aliases
+## AOSP build variables for my configuration
+export DIST_DIR="/home/tux/Android/distrib"
+export OUT_DIR="/home/tux/Android/out"
+export OUT_DIR_COMMON_BASE="/home/tux/Android/out/common"
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -X:+TieredCompilation -Xmx4G"
+export STUDIO_JDK="/home/tux/studio/android-studio/jre"
+export ANDROID_SDK_ROOT="/home/tux/studio/sdk"
+export ADB_VENDOR_KEYS="/home/tux/studio/.android"
+export MAIN="/home/tux/Android"
+
+## CCACHE variables for the build process
+export USE_CCACHE="1"
+export CCACHE_DIR="/home/tux/Android/.ccache"
+export CCACHE_NLEVELS=5
+export CCACHE_MAXSIZE="50G"
+export CCACHE_BASEDIR="/home/tux/Android"
+export CCACHE_LOGFILE="/home/tux/Android/.money.log"
+
+## Atom.io environment variables for ease of use
+#export ATOM_PROJECTS_DIR="/home/tux"
+export PATH="/home/tux/studio/android-studio/bin:/home/tux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+#export ATOM_HOME="/home/tux/Android/coding/.atom"
+#export ATOM_DEV_RESOURCE_PATH="/home/tux/Android/coding"
+#export ATOM_REPOS_HOME="/home/tux/Android/coding/repos"
+#export NVM_DIR="/home/tux/Android/coding/.nvm"
+#export NVM_BIN="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/bin"
+#export NVM_INC="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/include/node"
+
+## This loads nvm bash_completion
+# if [ -s "$NVM_DIR/bash_completion" ]; then
+#	. $NVM_DIR/bash_completion
+# fi
+
+#-------------------------------------------------------------------------#
+  ####################-Finally the ALIAS section-########################
+#-------------------------------------------------------------------------#
+## enable color support of ls and also add handy aliases
+#if [ -x /usr/bin/dircolors ]; then
+#    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
+d=".dircolors"
+test -r $d && eval "$(dircolors $d)"
+
+    alias ls='ls -AFC --color=always'
+    alias dire='dir -dULsh --color=always'
+    #alias vdir='vdir --color=always'
+
+    alias grab='grep -Un --text --color=always'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
+#fi
+
+
+## Some more ls aliases ##
+alias lm='ls -shAGlpt --author --color=always'
 alias ll='ls -AFlLHhiNq --author --group-directories-first --color=always'
 alias la='ls -AlLChHst --author --color=always'
-alias l='ls -ALFh --color=always'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias l='ls -ALFh --author --color=always'
 
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+## Add an "alert" alias for long running commands.  Use like so:
+##   sleep 10; alert
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo
+#terminal || echo error)" "$(history|tail -n1|sed -e
+#'\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+## Alias definitions.
+## You may want to put all your additions into a separate file like
+## ~/.bash_aliases, instead of adding them here directly.
+##See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+## Enable programmable completion features (you don't need to enable
+## this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+## sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -175,4 +215,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
