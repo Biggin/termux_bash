@@ -136,8 +136,13 @@ export OUT_DIR_COMMON_BASE="/home/tux/Android/out/common"
 export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -X:+TieredCompilation -Xmx4G"
 export STUDIO_JDK="/home/tux/studio/android-studio/jre"
 export ANDROID_SDK_ROOT="/home/tux/studio/sdk"
+<<<<<<< HEAD
 export ADB_VENDOR_KEYS="/home/tux/studio/.android:/home/tux/.android"
 export DROID_DIR="/home/tux/Android"
+=======
+export ADB_VENDOR_KEYS="/home/tux/studio/.android"
+export MAIN="/home/tux/Android"
+>>>>>>> d8babbc29a0e3e2b688caed7e0ca32095d110804
 
 ## CCACHE variables for the build process
 export USE_CCACHE="1"
@@ -149,7 +154,11 @@ export CCACHE_LOGFILE="/home/tux/Android/.money.log"
 
 ## Atom.io environment variables for ease of use
 #export ATOM_PROJECTS_DIR="/home/tux"
+<<<<<<< HEAD
 #export PATH="home/tux/Android/coding/.nvm/versions/node/v14.0.0/bin:/home/tux/studio/android-studio/bin:/home/tux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+=======
+export PATH="/home/tux/studio/android-studio/bin:/home/tux/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+>>>>>>> d8babbc29a0e3e2b688caed7e0ca32095d110804
 #export ATOM_HOME="/home/tux/Android/coding/.atom"
 #export ATOM_DEV_RESOURCE_PATH="/home/tux/Android/coding"
 #export ATOM_REPOS_HOME="/home/tux/Android/coding/repos"
