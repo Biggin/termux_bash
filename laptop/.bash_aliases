@@ -2,7 +2,9 @@
 
 ## System level aliases
 alias _='sudo'
-alias c='cat -nst'
+alias diff='diff --color=always'
+alias diffy='diff -yw --suppress-common-lines'
+alias cn='cat -nst'
 alias back="tac -r -s 'x\|[^x]' "
 alias cpr='cp -ir'
 alias tile='file -p --extension --dereference'
@@ -14,6 +16,7 @@ alias rc='nano ~/.bashrc'
 alias aliases='nano ~/.bash_aliases'
 alias xx='exit'
 alias pff='poweroff'
+alias rfkill='sudo rfkill --output DEVICE,ID,TYPE,TYPE-DESC,SOFT,HARD'
 
 ## File removal "securely" for the noid...
 alias sub='scrub -SRfr -p pfitzner33'
@@ -33,6 +36,7 @@ alias apsh='apt show'
 alias au='sudo apt-get update'
 alias auu='sudo apt-get update && sudo apt-get upgrade'
 alias clapt='sudo apt autoremove && sudo apt remove && sudo apt autoclean && sudo apt clean'
+
 ## Dpkg simplification
 alias lintian='lintian --color=always'
 alias dpkgh='dpkg --help'
@@ -63,7 +67,8 @@ alias fastvar='fastboot getvar all'
 alias repoh='repo help'
 alias rerepo='repo rebase -i'
 alias rerebase='repo rebase --autosquash --auto-stash -m'
-alias repoerr='repo sync --force-sync --prune --no-clone-bundle --no-tags --current-branch -j2'
+#alias repoerr='repo sync --force-sync --prune --no-clone-bundle --no-tags --current-branch -j2'
+alias repair='repo sync --detach --no-clone-bundle --force-remove-dirty --force-sync -j 4'
 alias respo='repo sync --current-branch --no-tags --no-clone-bundle --optimized-fetch -j2'
 alias repochk='repo checkout --branch'
 alias repoi='repo init'
