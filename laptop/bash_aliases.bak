@@ -1,8 +1,7 @@
 ## An alias file for quicker syntax of common commands
 
 ## System level aliases
-alias shit='inxi'
-alias shitty='sudo inxi'
+alias _='sudo'
 alias sumod6='sudo chmod 644'
 alias sumod7='sudo chmod 755'
 alias suown="sudo chown $USER:$USER"
@@ -30,10 +29,9 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias wg='wget2'
 alias wget2='wget2 -c --progress=bar'
 alias histg='history | grep'
-alias rc="nano $HOME/.bashrc"
-alias aliases="nano $HOME/.bash_aliases"
-alias src="source ~/.bashrc"
-alias net='curl ipinfo.io/ip'
+alias rc='nano ~/.bashrc'
+alias aliases='nano ~/.bash_aliases'
+alias net='curl ipinfo.io/ip' # External IP
 alias xx='exit'
 alias pff='poweroff'
 alias setperf='echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
@@ -65,7 +63,6 @@ alias clapt='sudo apt autoremove && sudo apt remove && sudo apt autoclean && sud
 
 ## Dpkg simplification
 alias lintian='lintian --color=always'
-alias dp='sudo dpkg'
 alias dp.h='dpkg --help'
 alias dp.fh='dpkg --force-help'
 alias dp.l='sudo dpkg -l'
@@ -97,11 +94,11 @@ alias repoh='repo help --all'
 alias rerepo='repo rebase -i'
 alias rebaser='repo rebase --autosquash --auto-stash -m'
 alias repair='repo sync --detach --no-clone-bundle --force-remove-dirty --force-sync -j4'
-alias respo='repo sync --current-branch --no-tags --no-clone-bundle --optimized-fetch -j2'
+#alias respo='repo sync --current-branch --no-tags --no-clone-bundle --optimized-fetch -j2'
 alias rechk='repo checkout --branch'
 alias reup='repo selfupdate'
-alias repin='repo init --no-clone-bundle --no-tags --current-branch --reference="/home/tux/Android/mirror" --dissociate --platform=linux -u'
-alias repoir='repo sync --no-clone-bundle --force-sync --optimized-fetch -j2' # For my mirror repos to include tags and branches
+alias repin='repo init -u'
+alias repoir='repo sync --no-clone-bundle --force-sync --optimized-fetch -j3' # For my mirror repos to include tags and branches
 alias rstat='repo status'
 alias rediff='repo diffmanifests'
 alias reman='repo manifest'
@@ -118,16 +115,9 @@ alias git.rbs='git rebase --skip'
 alias git.chk='git checkout'
 alias clone='git clone'
 alias gstat='git status'
-alias gadd='git add . '
 alias git.c='git commit -m'
 alias git.ca='git commit --amend -m'
 alias git.cn='git commit --no-edit -m'
-alias git.pu='git push'
-alias git.ll='git pull'
 alias git.re='git reset --hard'
-alias git.add='git remote add'
+alias git.add='git remote add
 alias git.set='git remote --set-upstream'
-
-
-#alias perry='clone git@github.com:MotorolaMobilityLLC/kernel-msm.git -b nougat-7.1.1-release-perry'
-#alias surf='clone git@github.com:MotorolaMobilityLLC/kernel-msm.git -b pie-9.0.0-release-pcb29'

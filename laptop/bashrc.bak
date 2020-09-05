@@ -64,8 +64,8 @@ shopt -s histappend
 shopt -s histreedit
 
 ## For setting history length see HISTSIZE and HISTFILESIZE in bash
-HISTSIZE=500
-HISTFILESIZE=1000
+HISTSIZE=200
+HISTFILESIZE=500
 
 ## Check the window size after each command and, if necessary,
 ## update the values of LINES and COLUMNS.
@@ -76,7 +76,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 ## Make less more friendly for non-text input files, see lesspipe
-[ -x /usr/bin/lesspipe ] && eval $(SHELL=/bin/sh lesspipe)
+## [ -x /usr/bin/lesspipe ] && eval $(SHELL=/bin/sh lesspipe)
 
 #-------------------------------------------------------------------------#
    #############-To Set the Command Prompt, thanks ParrotOS-############
@@ -110,7 +110,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
 
-PS1='\[\033[01;32m\]\u\[\033[00m\]\[\033[33m\]@\[\033[01;35m\]\h\[\033[00m\]\[\033[01;37m\]:\[\033[01;33m\][\[\033[00m\]\[\033[37m\]\w\[\033[01;33m\]]\[\033[00m\]\[\033[37m\]$(__git_ps1 $grn"(%s)")\[\033[37m\]$ '
+PS1=' \[\033[01;32m\]\u\[\033[00m\]\[\033[33m\]@\[\033[01;35m\]\h\[\033[00m\]\[\033[01;37m\]:\[\033[01;33m\][\[\033[00m\]\[\033[37m\]\w\[\033[01;33m\]]\[\033[00m\]\[\033[37m\]\$\[\033[00m\] '
     ##PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -129,13 +129,13 @@ esac
 #-------------------------------------------------------------------------#
    ############-Environment Variables for My Linux Machine-#############
 #-------------------------------------------------------------------------#
-export PATH="~/Studio/android-studio/bin:~/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:${NVM_BIN}:${TOOLS}"
+
+export PATH="~/Studio/android-studio/bin:~/.local/bin:~/.local/bin/devil:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 ## AOSP build variables for my configuration
 export SRC="/home/tux/Android"
-export TOOLS="${SRC}/workspace/vendor/samsung/zero-usc/tools:${SRC}/arm-tools"
-export TWRP="/home/tux/Android/twrp"
 export DIST_DIR="/home/tux/Android/distrib"
 export OUT_DIR="/home/tux/Out"
 export OUT_DIR_COMMON_BASE="/home/tux/Out/common"
@@ -144,9 +144,10 @@ export STUDIO_JDK="/home/tux/Studio/android-studio/jre"
 export ANDROID_SDK_ROOT="/home/tux/Studio/sdk"
 export ANDROID_AVD_HOME="/home/tux/Studio/sdk/.android/avd"
 export ANDROID_EMULATOR_HOME="/home/tux/Studio/sdk/emulator"
+export ADB_TRACE=""
 export ADB_VENDOR_KEYS="/home/tux/Studio/sdk/.android"
+#:/home/tux/.android
 export QEMU_AUDIO_DRV="alsa"
-export APK_BIN="/home/tux/Studio/android-studio/bin"
 
 ## CCACHE variables for the build process
 export USE_CCACHE="1"
@@ -157,19 +158,18 @@ export CCACHE_BASEDIR="/home/tux/Android"
 export CCACHE_LOGFILE="/home/tux/Android/cash.log"
 
 ## Atom.io environment variables for ease of use
-export ATOM_PROJECTS_DIR="/home/tux/Android"
-export ATOM_HOME="/home/tux/Android/coding/.atom"
-export NVM_DIR="$HOME/Android/coding/.nvm"
-export NVM_BIN="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/bin"
-export NVM_INC="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/include/node"
+#export ATOM_PROJECTS_DIR="/home/tux/Projects"
+#export ATOM_HOME="/home/tux/Android/coding/.atom"
+#export ATOM_DEV_RESOURCE_PATH="/home/tux/Android/coding"
+#export ATOM_REPOS_HOME="/home/tux/Android/coding/repos"
+#export NVM_DIR="/home/tux/Android/coding/.nvm"
+#export NVM_BIN="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/bin"
+#export NVM_INC="/home/tux/Android/coding/.nvm/versions/node/v14.0.0/include/node"
 
 ## This loads nvm bash_completion
- if [ -s "$NVM_DIR/bash_completion" ]; then
-	. "$NVM_DIR/bash_completion"
- fi
-
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# if [ -s "$NVM_DIR/bash_completion" ]; then
+#	. $NVM_DIR/bash_completion
+# fi
 
 #-------------------------------------------------------------------------#
   ####################-Finally the ALIAS section-########################
@@ -196,6 +196,13 @@ alias ll='ls -AFlhiNq --author --group-directories-first --color=always'
 alias la='ls -AFC --author --color=always'
 alias l='ls -ALFsht --author --color=always'
 
+
+## Add an alert alias for long running commands.  Use like so
+## sleep 10 alert
+##alias alert=notify-send --urgency=low -i $([ $? = 0 ] && echo
+##terminal || echo error) $(history|tail -n1|sed -e
+##\s/^\s*[0-9]\+\s*//s/[&|]\s*alert$//\)
+
 ## You may want to put all your additions into a separate file like
 ## ~/.bash_aliases instead of adding them here directly.
 ## See /usr/share/doc/bash-doc/examples in the bash-doc package.
@@ -205,8 +212,8 @@ fi
 
 ## My additional shell functions are listed in various files, adding
 ## functionality to source them upon login.
-if [ -f ~/.bash_functions ]; then
-	. ~/.bash_functions
+if [ -f ~/.script ]; then
+	. ~/.script
 fi
 
 ## Enable programmable completion features, you don't need to enable
@@ -221,4 +228,4 @@ if ! shopt -oq posix; then
 fi
 
 ## Load KB-E init file
-##source $SRC/extra_tools/build_essentials/resources/init/init.sh
+#source "$MAIN/extra_tools/build_essentials/resources/init/init.sh"
