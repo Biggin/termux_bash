@@ -1,6 +1,15 @@
+#BLK=033[30m
+#RED=033[31m
+#YEL=033[32m
+#GRN=033[33m
+#BLU=033[34m
+#MAG=033[35m
+#CYA=033[36m
+#WHI=033[37m
+
 ## Function to display uptime of a system. All credits to the original author.
 function upinfo() {
-    echo -ne "${grn}$(hostname) ${mag}uptime is ${yel} \\t "
+    echo -ne "${BLU}${HOSTNAME} ${MAG}uptime is ${YEL} \\t "
     uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'
 }
 
@@ -41,9 +50,13 @@ function extract {
  fi
 }
 
-
 ## Make a new directory and change into it
-mcd () {
+go () {
 	mkdir -p $1
 	cd $1
+}
+
+## Testing a new clone function to prevent having to type the full domain name each time
+function clone () {
+	git clone https://github.com/$1
 }
