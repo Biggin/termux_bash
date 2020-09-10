@@ -55,3 +55,8 @@ go () {
 	mkdir -p $1
 	cd $1
 }
+
+## Testing a new clone function to prevent having to type the full domain name each time
+function clone () {
+	git clone https://github.com/$1
+}

@@ -80,17 +80,17 @@ shopt -s globstar
  #--------------------------------------------------------------#
      #####-To Set the Command Prompt, thanks ParrotOS-#####
  #--------------------------------------------------------------#
-## Set variable identifying the chroot you work in (used in the prompt below)
+## set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-## Set a fancy prompt (non-color, unless we know we "want" color)
+## set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[01;35m\]biggin\[\033[01;33m\]@\[\033[01;96m\]termux'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\\$ \[\e[0m\]"
+    PS1="\[\033[0;31m\]\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[\033[0;31m\]\342\234\227\[\033[0;37m\]]\342\224\200\")[$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]root\[\033[01;33m\]@\[\033[01;96m\]\h'; else echo '\[\033[01;35m\]biggin\[\033[01;33m\]@\[\033[01;96m\]termux'; fi)\[\033[0;31m\]]\342\224\200[\[\033[0;32m\]\w\[\033[0;31m\]]\n\[\033[0;31m\]\342\224\224\342\224\200\342\224\200\342\225\274 \[\033[0m\]\[\e[01;33m\]\$ \[\e[0m\]"
 
 ## If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -110,17 +110,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
       #############-Finally the ALIAS section-############
  #--------------------------------------------------------------#
 ## Enable color support of ls and also add handy aliases
-d=".dircolors"
+d="${HOME}/.dircolors"
 test -r $d && eval "$(dircolors -b $d)"
 
-    alias ls='ls -FC --color=always'
-    alias dire='dir -dULsh --color=always'
-    #alias vdir='vdir --color=always'
+alias ls='ls -FC --color=always'
+alias dire='dir -dULsh --color=always'
+#alias vdir='vdir --color=always'
 
-    alias grab='grep -Un --text --color=always'
-    alias grep='grep --color=always'
-    alias fgrep='fgrep --color=always'
-    alias egrep='egrep --color=always'
+alias grab='grep -Un --text --color=always'
+alias grep='grep --color=always'
+alias fgrep='fgrep --color=always'
+alias egrep='egrep --color=always'
 
 ## Some more ls aliases ##
 alias lm='ls -shAGlpt --author --color=always'
@@ -128,23 +128,30 @@ alias ll='ls -AFClsh --author --color=always'
 alias la='ls -AFC --color=always'
 alias l='ls -FCsh --color=always'
 
-## Alias & Shell Function definitions.
-## You may want to put all your additions into a separate file like ~/.bash_aliases || ~/.bash_functions, instead of adding them here directly. See /usr/share/doc/bash-doc/examples in the bash-doc package.
+## Alias definitions.
+## You may want to put all your additions into a separate file like
+## ~/.bash_aliases, instead of adding them here directly.
+##See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-	if [ -f ~/.bash_functions ]; then
-		. ~/.bash_functions
-	fi
-    . ~/.bash_aliases
+      . ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_functions ]; then
+	. ~/.bash_functions
 fi
 
 if [ -f ~/.git-completion.bash ]; then
-	if [ -f ~/.git-prompt.sh ]; then
-		. ~/.git-prompt.sh
-	fi
 	. ~/.git-completion.bash
 fi
-## Enable programmable completion features (you do not need to enable  this, if it is already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
+
+if [ -f ~/.git-prompt.sh ]; then
+	. ~/.git-prompt.sh
+fi
+
+## Enable programmable completion features (you don't need to enable
+## this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+## sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
