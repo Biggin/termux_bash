@@ -1,0 +1,25 @@
+#!/system/bin/sh
+
+########################################################
+#									 #
+#  My script to set SE-linux to permissive on the fly. #
+#  Coded by: Biggin						 #
+#  Email: dumb.droid.dev@gmail.com				 #
+#									 #
+########################################################
+
+S1=$(sudo getenforce)
+S2=Permissive
+
+echo -e "${YEL}A script to set ${BRED}SElinux ${RES}${YEL}to ${BGRN}permissive${RES}\n"
+
+echo -e "Your system is currently set to: ${BRED}${S1}\n"
+if echo  $S1 | grep -q $S2;
+then
+	echo -e "${YEL}System already set to: ${GRN}$S2\n"
+      exit 1
+else #[ ${S1} -eq ${PERM} ]
+	echo -e "${CYA}Setting new permissions...\n"
+      sudo setenforce 0
+	echo -e "${BLU}Security profile has changed to: ${BGRN}$(sudo getenforce)\n"
+fi
