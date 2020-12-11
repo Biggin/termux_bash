@@ -1,25 +1,26 @@
 #!/system/bin/sh
 
-########################################################
-#									 #
-#  My script to set SE-linux to permissive on the fly. #
-#  Coded by: Biggin						 #
-#  Email: dumb.droid.dev@gmail.com				 #
-#									 #
-########################################################
+#########################################################
+#
+#  My script to set SE-linux to permissive on the fly.
+#  Coded by:  clnelson@github.com
+#  Email:     dumb.droid.dev@gmail.com
+#  Created:   Sep-2020
+#
+#########################################################
 
-S1=$(sudo getenforce)
-S2=Permissive
+Get=$(sudo getenforce)
+Per=Permissive
 
-echo -e "${YEL}A script to set ${BRED}SElinux ${RES}${YEL}to ${BGRN}permissive${RES}\n"
+echo -e "${yel}A script to set ${bred}SElinux ${res}${yel}to ${bgrn}permissive${res}\n"
 
-echo -e "Your system is currently set to: ${BRED}${S1}\n"
-if echo  $S1 | grep -q $S2;
+echo -e "Your system is currently set to: ${bred}${Get}\n"
+if echo  $Get | grep -q $Per;
 then
-	echo -e "${YEL}System already set to: ${GRN}$S2\n"
+	echo -e "${yel}System already set to: ${grn}$Per\n"
       exit 1
-else #[ ${S1} -eq ${PERM} ]
-	echo -e "${CYA}Setting new permissions...\n"
+else #[ ${Get} -eq ${Per} ]
+	echo -e "${cya}Setting new permissions...\n"
       sudo setenforce 0
-	echo -e "${BLU}Security profile has changed to: ${BGRN}$(sudo getenforce)\n"
+	echo -e "${blu}Security profile has changed to: ${bgrn}$(sudo getenforce)\n"
 fi

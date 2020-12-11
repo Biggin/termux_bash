@@ -1,28 +1,25 @@
-# ${HOME}/.bash_function sourced by ${HOME}/.bashrc upon login for my custom functions to make life a little easier...
-#
-# Sets the color variables used for printing text during function calls
-BLK=\033[30m
-RED=\033[31m
-YEL=\033[32m
-GRN=\033[33m
-BLU=\033[34m
-MAG=\033[35m
-CYA=\033[36m
-WHI=\033[37m
-RES=\033[00m
+#blk=\033[30m
+#red=\033[31m
+#yel=\033[32m
+#grn=\033[33m
+#blu=\033[34m
+#mag=\033[35m
+#cya=\033[36m
+#whi=\033[37m
+#res=\033[00m
 
 ## Function to display uptime of a system. All credits to the original author.
 function upinfo() {
-    echo -ne "\t\tHello, ${CYA}${USER}${RES}!\nYour machine, ${YEL}${HOSTNAME},${RES} has been in use for${YEL} \\t ${RED}"
-    "uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'${RES}"
+    echo -ne "${blu}${HOSTNAME} ${mag}uptime is ${yel} \\t "
+    uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'
 }
 
 ## Extract any compressed file type with one universal command 
 function extract {
  if [ -z "$1" ]; then
       # display usage if no parameters given
-      echo -e "${WHI}Usage: ${RED}extract ${CYA}<path/file_name>${WHI}.${MAG}<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>${RES}"
-      echo -e "       ${RED}extract ${CYA}<path/file_name_1.ext> ${YEL}[path/file_name_2.ext] [path/file_name_3.ext]${RES}"
+      echo -e $yel"Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+      echo -e $yel"       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"$res
       return 1
  else
       for n in $@
@@ -42,12 +39,12 @@ function extract {
                *.xz)        unxz ./"$n"        ;;
                *.exe)       cabextract ./"$n"  ;;
                *)
-                            echo "extract: '$n' - unknown archive method"
+                            echo -e $red"extract: '$n' - unknown archive method"$res
                             return 1
                             ;;
              esac
          else
-             echo -e "${GRN}'$n' ${WHI}- ${RED}file does not exist.${RES}" 
+             echo -e $red"'$n' - file does not exist"$res
              return 1 
         fi 
       done
@@ -58,10 +55,13 @@ function extract {
 function go () {
 	mkdir -p $1
 	cd $1
-        echo -e "${YEL}You're now inside of your new dir at ${BLU}$(pwd)${RES}"
 }
 
 ## Testing a new clone function to prevent having to type the full domain name each time
 function clone () {
-	git clone https://github.com/$1
+	git clone https://github.com/$@
+}
+
+function lab_clone () {
+	git clone https://gitlab.com/$@
 }
