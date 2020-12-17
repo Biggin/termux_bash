@@ -1,0 +1,274 @@
+# Configuration file for dircolors, a utility to help you set the
+# LS_COLORS environment variable used by GNU ls with the --color option.
+# Copyright (C) 1996-2017 Free Software Foundation, Inc.
+# Copying and distribution of this file, with or without modification,
+# are permitted provided the copyright notice and this notice are preserved.
+# The keywords COLOR, OPTIONS, and EIGHTBIT (honored by the
+# slackware version of dircolors) are recognized but ignored.
+# Below are TERM entries, which can be a glob patterns, to match
+# against the TERM environment variable to determine if it is colorizable.
+TERM Eterm
+TERM ansi
+TERM *color*
+TERM con[0-9]*x[0-9]*
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM gnome
+TERM hurd
+TERM jfbterm
+TERM konsole
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mlterm
+TERM putty
+TERM rxvt*
+TERM screen*
+TERM st
+TERM terminator
+TERM tmux*
+TERM vt100
+TERM xterm*
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+NORMAL 00 # no color code at all
+FILE 36 # regular file: use no color at all
+RESET 0 # reset to "normal" color
+DIR 01;34 # directory
+LINK 04;33 # symbolic link. "If you set this to 'target' instead of a numerical value, the color is as for the file pointed to."
+MULTIHARDLINK 04;32 # regular file with more than one link
+FIFO 34;43;01 # pipe
+SOCK 34;43;01 # socket
+DOOR 33;44;01 # door
+BLK 35;40;01 # block device driver
+CHR 35;40;01 # character device driver
+ORPHAN 30;31;04 # symlink to nonexistent file, or non-statable file...
+MISSING 05;01;31 # ... and the files they point to
+SETUID 30;43 # file that is setuid (u+s)
+SETGID 30;43 # file that is setgid (g+s)
+CAPABILITY 35;46;01;04 # file with capability
+STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 30;42 # dir that is other-writable (o+w) and not sticky
+STICKY 37;44;01 # dir with the sticky bit set (+t) and not other-writable
+# This is for files with execute permission:
+EXEC 31;01;04
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to colorize below. Put the extension, a space, and the color init string.
+# (and any comments you want to add after a '#')
+# If you use DOS-style suffixes, you may want to uncomment the following:
+#.cmd 01;32 # executables (bright green)
+#.exe 01;32
+#.com 01;32
+#.btm 01;32
+#.bat 01;32
+# Or if you want to colorize scripts even if they do not have the
+# executable bit actually set.
+.sh 01;31
+.csh 01;31
+.zsh 01;31
+.tcsh 01;31
+ # archives or compressed (bright red)
+.tar 30;41;01
+.img 31;47;01
+.tgz 04;31
+.arc 04;31
+.arj 04;31
+.taz 04;31
+.lha 04;31
+.lz4 04;31
+.lzh 04;31
+.lzma 04;31
+.tlz 04;31
+.txz 04;31
+.tzo 04;31
+.t7z 04;31
+.zip 30;41;01
+.z 30;41;01
+.Z 30;41;01
+.dz 04;31
+.gz 30;41;01
+.lrz 04;31
+.lz 04;31
+.lzo 04;31
+.xz 30;41;01
+.zst 04;31
+.tzst 04;31
+.bz2 30;41;01
+.bz 04;31
+.tbz 04;31
+.tbz2 04;31
+.tz 04;31
+.deb 01;31
+.rpm 01;31
+.ar 01;31
+.jar 01;31
+.war 01;31
+.ear 01;31
+.sar 01;31
+.rar 01;31
+.alz 01;31
+.ace 01;31
+.zoo 01;31
+.cpio 01;31
+.7z 01;31
+.rz 01;31
+.cab 01;31
+.wim 01;31
+.swm 01;31
+.dwm 01;31
+.esd 01;31
+# image formats
+.jpg 01;35
+.jpeg 35;01
+.mjpeg 35;01
+.gif 35;01
+.bmp 35;01
+.pbm 35;01
+.pgm 35;01
+.ppm 35;01	
+.tga 35;01
+.xbm 35;01
+.xpm 35;01
+.tif 35;01
+.tiff 35;01
+.png 35;01
+.svg 35;01
+.svgz 35;01
+.mng 35;01
+.pcx 35;01
+.mov 35;01
+.mpg 35;01
+.mpeg 35;01
+.m2v 35;01
+.mkv 35;01
+.webm 35;01
+.ogm 35;01
+.mp4 35;01
+.m4v 35;01
+.mp4v 35;01
+.vob 35;01
+.qt 35;01
+.nuv 35;01
+.wmv 35;01
+.asf 35;01
+.rm 35;01
+.rmvb 35;01
+.flc 35;01
+.avi 35;01
+.fli 35;01
+.flv 35;01
+.gl 35;01
+.dl 35;01
+.xcf 35;01
+.xwd 35;01
+.yuv 35;01
+.cgm 35;01
+.emf 35;01
+# https://wiki.xiph.org/MIME_Types_and_File_Extensions
+.ogv 35;01
+.ogx 35;01
+# audio formats
+.aac 37;44;01
+.au 37;44;01
+.flac 37;44;01
+.m4a 37;44;01
+.mid 37;44;01
+.midi 37;44;01
+.mka 37;44;01
+.mp3 37;44;01
+.mpc 37;44;01
+.ogg 37;44;01
+.ra 37;44;01
+.wav 37;44;01
+# https://wiki.xiph.org/MIME_Types_and_File_Extensions
+.oga 37;44;01
+.opus 37;44;01
+.spx 37;44;01
+.xspf 37;44;01
+## Other file types found on my system
+.apk 31
+.bak 33	
+.bash 01;35
+.bashrc 01;32
+.bash_aliases 01;32
+.bash_functions 01;32
+.bash_history 01;30
+.bash_logout 01;30
+.bat 33
+.bp 32
+.cfg 01;33
+.coffeelintignore 30
+.conf 01;33
+.config 01;33
+.desktop 01;32
+.db 01;36
+.dircolors 35
+.dirs 34
+.efi 01;32
+.env 35
+.eslintignore 30
+.gitattributes 01;30
+.gitconfig 33
+.gitignore 01;30
+.gnupg 01;36
+.gpg 01;36
+.gradle 31
+.grubenv 35
+.gtkrc-2.0 01;30
+.htm 37
+.html 37
+.ICEauthority 01;30
+.ini 31
+.java 31
+.js 31
+.json 01;37
+.kbx 01;35
+.key 01;35
+.kbx~ 01;35
+.list 37
+.lst 37
+.locale 32
+.log 33
+.log.1 33
+.log.2 33
+.log.3 33
+.mail 32
+.md 34
+.MF 33
+.mk 35
+.mkdn 34
+.mod 34
+.new 37
+.old 37
+.pem 01;32
+.pf2 33
+.php 01;37
+.pk8 33
+.pl 01;35
+.prettierrc 32
+.profile 01;32
+.prop 35
+.properties 35
+.py 01;31
+.python-version 01;30
+.rb 01;31
+.repo 35
+.sample 37
+.save 37
+.selected_editor 00
+.sh 31
+.sudo_as_admin_successful 35
+.travis 35
+.txt 37
+.wget-hsts 00
+.xml 32
+.xpi 31
+.yml 32

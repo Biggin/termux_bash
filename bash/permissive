@@ -1,0 +1,51 @@
+#!/system/bin/sh
+
+#########################################################
+#
+#  My script to set SE-linux to permissive on the fly.
+#  Coded by:  clnelson@github.com
+#  Email:     dumb.droid.dev@gmail.com
+#  Created:   Sep-2020
+#
+#########################################################
+
+## Setup
+res='\e[00m'
+grn='\e[32m'
+yel='\e[33m'
+bred='\e[1;31m'
+bgrn='\e[1;32m'
+byel='\e[1;33m'
+
+Get=`sudo getenforce`
+Per="[Pp]ermissive"
+
+## Check for stock Samsung device b/c 'Permissive' is not obtainable on those devices...
+Man=`sudo getprop ro.product.manufacturer`
+Tag=`sudo getprop ro.build.tags`
+
+if [ $Man == "[Ss]amsung" && $Tag == "[Rr]elease-[Kk]eys" ]; then
+	echo -e "Stock Samsung kernel ${bred}DOES NOT${res} allow 'Permissive' context in their devices!\n${yel}Exiting...${res}"
+	sleep 2
+	return 127
+fi
+
+## Begin the working part
+echo -e "A script to set ${bred}SElinux ${res}to ${bgrn}permissive${res}...\n"
+
+echo -e "Your system is currently set to: ${byel}${Get}${res}\n"
+
+if [ $Get != $Per ]; then
+	echo -e "Setting new permissions...\n"
+      sudo setenforce 0
+      sleep 0.5
+      if [ $(sudo getenforce) != $Per ]; then
+      	echo -e "Nothing has changed, can your kernel be set to 'Permissive'?\n${bred}Exiting...${res}"
+      	return 127
+      fi
+	echo -e "${yel}Security profile has changed to: ${bgrn}$(sudo getenforce)\n"
+	return 0
+else
+	echo -e "System already set to: ${byel}${Per}${res}\n"
+      return 1
+fi
