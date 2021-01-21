@@ -4,7 +4,8 @@
 
 # Specify desired highlighting theme (e.g. "TwoDark"). Run `bat --list-themes`
 # for a list of all available themes
---theme="Monokai Extended"
+#--theme="Monokai Extended"
+--theme="Sublime Snazzy"
 
 # Enable this to use italic text on the terminal. This is not supported on all
 # terminal emulators (like tmux, by default):
@@ -16,10 +17,15 @@
 # Uncomment the following line if you are using less version >= 551 and want to
 # enable mouse scrolling support in `bat` when running inside tmux. This might
 # disable text selection, unless you press shift.
-#--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+#--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen"
+--pager="less -FR"
 
 # Syntax mappings: map a certain filename pattern to a language.
 #   Example 1: use the C++ syntax for .ino files
 #   Example 2: Use ".gitignore"-style highlighting for ".ignore" files
 --map-syntax "*.ino:C++"
---map-syntax ".ignore:Git Ignore"
+--map-syntax "*.ignore:Git Ignore"
+--map-syntax "*.md:YAML"
+--map-syntax "mdown:YAML"
+--map-syntax "markdown:YAML"
+--map-syntax "markdn:YAML"
