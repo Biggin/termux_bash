@@ -1,0 +1,20 @@
+[Data Source]
+DisplayName=dumb.droid.dev@outlook.com
+Enabled=true
+Parent=
+
+[GNOME Online Accounts]
+AccountId=account_1602547131_0
+CalendarUrl=
+ContactsUrl=
+Name=
+Address=dumb.droid.dev@outlook.com
+
+[Collection]
+BackendName=outlook
+CalendarEnabled=true
+ContactsEnabled=true
+Identity=c3370b86039b523e
+MailEnabled=true
+CalendarUrl=
+ContactsUrl=

@@ -1,0 +1,16 @@
+2020/04/30-12:32:55.308 5095 Reusing MANIFEST /home/tux/.config/chromium/Default/Local Storage/leveldb/MANIFEST-000001
+2020/04/30-13:03:29.703 551a Level-0 table #5: started
+2020/04/30-13:03:29.708 551a Level-0 table #5: 12450 bytes OK
+2020/04/30-13:03:29.712 551a Delete type=0 #3
+2020/04/30-13:27:49.971 551a Level-0 table #7: started
+2020/04/30-13:27:49.975 551a Level-0 table #7: 10756 bytes OK
+2020/04/30-13:27:49.979 551a Delete type=0 #4
+2020/04/30-13:29:28.795 551a Level-0 table #9: started
+2020/04/30-13:29:28.799 551a Level-0 table #9: 9641 bytes OK
+2020/04/30-13:29:28.802 551a Delete type=0 #6
+2020/04/30-13:31:38.142 551a Level-0 table #11: started
+2020/04/30-13:31:38.147 551a Level-0 table #11: 11092 bytes OK
+2020/04/30-13:31:38.151 551a Delete type=0 #8
+2020/04/30-13:34:21.052 551a Level-0 table #13: started
+2020/04/30-13:34:21.056 551a Level-0 table #13: 8404 bytes OK
+2020/04/30-13:34:21.060 551a Delete type=0 #10

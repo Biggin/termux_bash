@@ -1,0 +1,19 @@
+[Data Source]
+DisplayName=dumb.droid.dev@gmail.com
+Enabled=true
+Parent=741975d348a4e524c0565f30c6c5f4bc1bcc33cc
+
+[Mail Transport]
+BackendName=smtp
+
+[Authentication]
+Host=smtp.gmail.com
+Method=XOAUTH2
+Port=465
+ProxyUid=system-proxy
+RememberPassword=true
+User=dumb.droid.dev@gmail.com
+CredentialName=
+
+[Security]
+Method=ssl-on-alternate-port

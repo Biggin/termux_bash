@@ -1,0 +1,30 @@
+VirtualBox GUI VM Selector Window 5.2.42_Ubuntu r137960 linux.amd64 (Jun  5 2020 08:26:08) release log
+00:00:01.380209 Log opened 2020-10-31T22:38:49.789852000Z
+00:00:01.380210 Build Type: release
+00:00:01.380215 OS Product: Linux
+00:00:01.380217 OS Release: 5.3.0-51-generic
+00:00:01.380218 OS Version: #44~18.04.2-Ubuntu SMP Thu Apr 23 14:27:18 UTC 2020
+00:00:01.380268 DMI Product Name: HP 255 G7 Notebook PC
+00:00:01.380283 DMI Product Version: Type1ProductConfigId
+00:00:01.380360 Host RAM: 7423MB (7.2GB) total, 4777MB (4.6GB) available
+00:00:01.380367 Executable: /usr/lib/virtualbox/VirtualBox
+00:00:01.380367 Process ID: 16368
+00:00:01.380368 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:01.380461 Qt version: 5.9.5
+00:00:01.466051 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:01.466085 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:01.470120 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:01.470151 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:01.734528 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:01.735806 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:00:01.972377 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 0x27 x 1360x741
+00:01:08.514758 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:01:19.913599 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:01:20.026096 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:01:53.717797 GUI: UIMediumEnumerator: Medium with key={6eb10e1d-a670-4168-9b5f-45100820e751} created
+00:02:12.472496 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:02:17.818548 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:02:18.085559 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:03:10.812280 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:05:48.264638 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:07:04.474964 GUI: UIMediumEnumerator: Medium-enumeration finished!

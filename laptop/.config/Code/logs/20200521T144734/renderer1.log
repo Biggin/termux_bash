@@ -1,0 +1,5 @@
+[2020-05-21 14:51:21.147] [renderer1] [error] net::ERR_INTERNET_DISCONNECTED: Error: net::ERR_INTERNET_DISCONNECTED
+    at SimpleURLLoaderWrapper.<anonymous> (electron/js2c/browser_init.js:2623:21)
+    at SimpleURLLoaderWrapper.emit (events.js:203:13)
+[2020-05-21 14:53:49.805] [renderer1] [error] An unknown error occurred. Please consult the log for more details.: Error
+    at XMLHttpRequest.r.onerror (file:///usr/share/code/resources/app/out/vs/workbench/workbench.desktop.main.js:437:521)

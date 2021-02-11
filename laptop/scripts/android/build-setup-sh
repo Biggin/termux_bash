@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+##################################
+#: Coded-by: clnelson@github.com
+#: Born-on-Date: Jan-2021
+#: License: GPLv3
+##################################
+
+#: A script to setup an Android build environment on a new Ubuntu machine
+LATEST_MAKE_VERSION="4.3"
+UBUNTU_PACKAGES="curl toilet fortune-off rsync"
+DEBIAN_PACKAGES="curl rsync"
+PACKAGES=""
+
+echo "Updating sources & installing the necessary packages to build Android!"
+sudo apt-get install lsb-core -y
+
+LSB_RELEASE="$(lsb_release -d | cut -d ':' -f 2 | sed -e 's/^[[:space:]]*//')"
+
+if [[ $LSB_RELEASE =~ "Ubuntu 18" || $LSB_RELEASE =~ "Ubuntu 19" || $LSB_RELEASE =~ "Ubuntu Focal Fossa" || $LSB_RELEASE =~ "Deepin" ]]; then
+    PACKAGES="$UBUNTU_PACKAGES"
+elif [[ $LSB_RELEASE =~ "Debian GNU/Linux 10" ]]; then
+    PACKAGES="$DEBIAN_PACKAGES"
+
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt-get install aapt abootimg adb android-framework-res android-sdk* apksigner apktool \
+    append2simg apt-utils autoconf automake autogen axel bc bison build-essential ccache clang \
+    cmake curl dalvik-exchange dexdump dexlist expat fastboot flex g++ g++-multilib gawk gcc-multilib \
+    gcc git-core gnupg gperf help2man htop hub img2simg imagemagick libexpat1-dev libgmp-dev '^liblz4-.*' \
+    '^liblzma.*' libmpc-dev libmpfr-dev libsmali-java libsmali-1-java lib32ncurses5-dev libncurses5-dev \
+    lib32z1-dev libtinfo5 libc6-dev libcap-dev libc6-dev-i386 x11proto-core-dev libx11-dev libxml-simple-perl \
+    libgl1-mesa-dev libxml2-utils xsltproc maven ncftp ncurses-dev openjdk-8-jdk pidcat patch patchelf pkg-config \
+    pngcrush pngquant python2.7 python-all-dev re2c schedtool simg2img skales squashfs-tools subversion w3m \
+    texinfo unzip xsltproc zip zlib1g-dev lzip libsdl1.2-dev libtool libssl-dev libxml2 libxml2-utils '^lzma.*' \
+    lzop zipalign p7zip-full -y
+
+echo "Installing Google's repo tool..."
+if [ -d ~/.local/bin ]; then
+    sudo curl -L -o ~/.local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+else
+    sudo curl --create-dirs -L -o ~/.local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+fi
+sudo chmod a+rx ~/.local/bin/repo
+
+# From Ubuntu 18.10 onwards and Debian Buster libncurses5 package is not available, so we need to hack our way by symlinking required library
+# shellcheck disable=SC2076
+if [[ ${LSB_RELEASE} =~ "Ubuntu 18.10" || ${LSB_RELEASE} =~ "Ubuntu 19" || ${LSB_RELEASE} =~ "Ubuntu Focal Fossa" || ${LSB_RELEASE} =~ "Debian GNU/Linux 10" ]]; then
+    if [[ -e /lib/x86_64-linux-gnu/libncurses.so.6 && ! -e /usr/lib/x86_64-linux-gnu/libncurses.so.5 ]]; then
+        sudo ln -s /lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
+    fi
+fi
+
+if [[ "$(command -v adb)" != "" ]]; then
+    echo -e "Setting up udev rules for adb!"
+    sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L https://raw.githubusercontent.com/M0Rf30/android-udev-rules/master/51-android.rules
+    sudo chmod 644 /etc/udev/rules.d/51-android.rules
+    sudo chown root /etc/udev/rules.d/51-android.rules
+    sudo systemctl restart udev
+    adb kill-server
+    sudo killall adb
+fi
+
+if [[ "$(command -v make)" ]]; then
+    echo "Checking make installation and version..."
+    makeversion="$(make -v | head -1 | awk '{print $3}')"
+    if [[ ${makeversion} != "${LATEST_MAKE_VERSION}" ]]; then
+        echo "Installing make ${LATEST_MAKE_VERSION} instead of ${makeversion}"
+        bash "$(dirname "$0")"/make.sh "${LATEST_MAKE_VERSION}"
+    fi
+fi

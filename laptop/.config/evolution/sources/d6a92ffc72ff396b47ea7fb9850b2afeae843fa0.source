@@ -1,0 +1,53 @@
+[Data Source]
+DisplayName=dumb.droid.dev@outlook.com
+Enabled=true
+Parent=ec6f2df82aeafeac95c87ad01457f1914ba9b678
+
+[Offline]
+StaySynchronized=false
+
+[Authentication]
+Host=imap-mail.outlook.com
+Method=XOAUTH2
+Port=993
+ProxyUid=system-proxy
+RememberPassword=true
+User=dumb.droid.dev@outlook.com
+CredentialName=
+
+[Mail Account]
+BackendName=imapx
+IdentityUid=f5a475b7ac109037ab9ad1b6d1d869e0520124ef
+ArchiveFolder=
+NeedsInitialSetup=true
+
+[Security]
+Method=ssl-on-alternate-port
+
+[Imapx Backend]
+FilterInbox=true
+StoreChangesInterval=3
+LimitByAge=false
+LimitUnit=years
+LimitValue=1
+UseMultiFetch=false
+CheckAll=false
+CheckSubscribed=false
+ConcurrentConnections=3
+FetchOrder=ascending
+FilterAll=false
+FilterJunk=false
+FilterJunkInbox=false
+Namespace=
+RealJunkPath=
+RealTrashPath=
+ShellCommand=ssh -C -l %u %h exec /usr/sbin/imapd
+UseIdle=false
+UseNamespace=false
+UseQresync=false
+UseRealJunkPath=false
+UseRealTrashPath=false
+UseShellCommand=false
+UseSubscriptions=false
+IgnoreOtherUsersNamespace=false
+IgnoreSharedFoldersNamespace=false

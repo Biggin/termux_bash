@@ -1,0 +1,19 @@
+[Data Source]
+DisplayName=dumb.droid.dev@outlook.com
+Enabled=true
+Parent=ec6f2df82aeafeac95c87ad01457f1914ba9b678
+
+[Mail Transport]
+BackendName=smtp
+
+[Authentication]
+Host=smtp-mail.outlook.com
+Method=XOAUTH2
+Port=587
+ProxyUid=system-proxy
+RememberPassword=true
+User=dumb.droid.dev@outlook.com
+CredentialName=
+
+[Security]
+Method=starttls-on-standard-port

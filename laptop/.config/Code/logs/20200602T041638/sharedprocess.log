@@ -1,0 +1,10 @@
+[2020-06-02 04:16:43.581] [sharedprocess] [info] main {"machineId":"c674430c6a5029360fa7667511a713f17228f38fe2141fc965ab453a79fa6001","windowId":2}
+[2020-06-02 04:17:23.664] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-06-02 04:20:53.878] [sharedprocess] [info] Installing extension: ms-python.python
+[2020-06-02 04:21:07.461] [sharedprocess] [info] Installing extension: redhat.java
+[2020-06-02 04:23:23.976] [sharedprocess] [info] Installing extension: vscode-icons-team.vscode-icons
+[2020-06-02 04:24:48.122] [sharedprocess] [info] Downloaded extension: vscode-icons-team.vscode-icons /tmp/efba7831-7e9f-4ddf-bd60-8606800bc1a5
+[2020-06-02 04:24:52.965] [sharedprocess] [info] Extracted extension to /home/tux/.vscode/extensions/.vscode-icons-team.vscode-icons-10.1.1: vscode-icons-team.vscode-icons
+[2020-06-02 04:24:52.967] [sharedprocess] [info] Renamed to /home/tux/.vscode/extensions/vscode-icons-team.vscode-icons-10.1.1
+[2020-06-02 04:24:52.975] [sharedprocess] [info] Installation completed. vscode-icons-team.vscode-icons
+[2020-06-02 04:24:53.281] [sharedprocess] [info] Extensions installed successfully: vscode-icons-team.vscode-icons

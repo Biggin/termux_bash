@@ -1,0 +1,8 @@
+{
+   "ZNaW77gTHsV30iYggCQzDY8H85VIJ9ztqbYWljl5APs=": {
+      "expiry": 1635727997.466684,
+      "mode": "force-https",
+      "sts_include_subdomains": true,
+      "sts_observed": 1604191997.46669
+   }
+}

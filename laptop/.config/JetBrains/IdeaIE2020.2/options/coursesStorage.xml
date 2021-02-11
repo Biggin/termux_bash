@@ -1,0 +1,18 @@
+<application>
+  <component name="CoursesStorage">
+    <courses>
+      <course>
+        <option name="courseMode" value="Study" />
+        <option name="description" value="Writing games is probably one of the most exciting tasks in programming. Develop your own version of the popular &quot;Battleship Game&quot; to play with your friends!&lt;br/&gt;&lt;br/&gt;Learn more at &lt;a href=&quot;https://hyperskill.org&quot;&gt;https://hyperskill.org/projects/125&lt;/a&gt;" />
+        <option name="humanLanguage" value="English" />
+        <option name="id" value="125" />
+        <option name="location" value="$USER_HOME$/IdeaProjects/Battleship" />
+        <option name="name" value="Battleship" />
+        <option name="programmingLanguage" value="JAVA" />
+        <option name="programmingLanguageVersion" value="11" />
+        <option name="tasksTotal" value="5" />
+        <option name="type" value="Hyperskill" />
+      </course>
+    </courses>
+  </component>
+</application>

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<oor:component-data oor:name="Addons" oor:package="org.openoffice.Office" 
+xmlns:install="http://openoffice.org/2004/installation"  
+xmlns:oor="http://openoffice.org/2001/registry" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <node oor:name="AddonUI">
+<node oor:name="OfficeToolBar">
+			<node oor:name="org.broffice.adicionarfigura" oor:op="replace">
+				<node oor:name="m1" oor:op="replace">
+					<prop oor:name="Context" oor:type="xs:string">
+						<value>com.sun.star.text.TextDocument</value>
+					</prop>
+					<prop oor:name="URL" oor:type="xs:string">
+						<value>vnd.sun.star.script:AdicionaFigura.Module1.Abrir_Dialogo?language=Basic&amp;location=application</value>
+					</prop>
+					<prop oor:name="ImageIdentifier" oor:type="xs:string">
+						<value>%origin%/icons/image1</value>
+					</prop>
+					<prop oor:name="Title" oor:type="xs:string">
+						<value>Pictures in a new document</value>
+						<value xml:lang="en">Pictures in a new document</value>
+						<value xml:lang="de">Bilder in ein neues Dokument</value>
+						<value xml:lang="fr">Images dans un nouveau document</value>
+						<value xml:lang="pt-BR">Figuras em um novo documento</value>
+
+					</prop>
+					<prop oor:name="Target" oor:type="xs:string">
+						<value>_self</value>
+					</prop>
+				</node>
+			</node>
+		</node>
+    <node oor:name="OfficeMenuBarMerging">
+      <node oor:name="org.broffice.adicionarfigura" oor:op="replace">
+		<node oor:name="S1" oor:op="replace">
+		  <prop oor:name="MergePoint">
+		    <value>.uno:InsertMenu\.uno:GraphicMenu</value>
+		  </prop>
+		  <prop oor:name="MergeCommand">
+			<value>AddAfter</value>
+		  </prop>
+		  <prop oor:name="MergeFallback">
+			<value>AddPath</value>
+		  </prop>
+		  <prop oor:name="MergeContext" oor:type="xs:string">
+                        <value>com.sun.star.text.TextDocument</value>
+		  </prop>
+		  <node oor:name="MenuItems">
+			<node oor:name="M1" oor:op="replace">
+		        <prop oor:name="Title" oor:type="xs:string">
+				<value>Pictures in a new document...</value>
+				<value xml:lang="en">Pictures in a new document...</value>
+				<value xml:lang="de">Bilder in ein neues Dokument...</value>
+				<value xml:lang="fr">Images dans un nouveau document...</value>
+				<value xml:lang="pt-BR">Figuras em um novo documento...</value>
+		        </prop>
+		        <prop oor:name="URL" oor:type="xs:string">
+                                             <value>vnd.sun.star.script:AdicionaFigura.Module1.Abrir_Dialogo?language=Basic&amp;location=application</value>
+		        </prop>
+		        <prop oor:name="Target" oor:type="xs:string">
+		          <value>_self</value>
+		        </prop>
+		        <prop oor:name="ImageIdentifier" oor:type="xs:string">
+		          <value/>
+		        </prop>
+			</node>
+		  </node>
+		</node>
+      </node>
+    </node>
+ </node>
+</oor:component-data>

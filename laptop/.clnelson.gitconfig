@@ -1,0 +1,90 @@
+## My global config options for working with git and repo-tool
+
+; Core Variables
+[core]
+	# Don't trust file modes, lol :)
+	filemode = false
+	ignoreCase = true
+	logAllRefUpdates = always
+	editor = nano
+	pager = less
+	sparseCheckout = true
+
+; The diff algorithm of greatness
+[diff]
+	renames = true
+	colorMoved = true
+
+[grep]
+	lineNumber = true
+	
+; Self explanatory I would think
+[user]
+	name = clnelson
+	email = dumb.droid.dev@outlook.com
+
+[color]
+	ui = always
+	grep = always
+	interactive = always
+	pager = true
+	status = always
+	showBranch = always
+	branch = always
+
+[color "branch"]
+	current = green
+	local = magenta
+	remote = red
+	plain = yellow
+	upstream = cyan bold
+
+; Two-Factor verification token
+[remote]
+	url = https://github.com/
+	token = 84a1dddd9789327e9297368067500c0f3d4ec587
+
+; Do I really need to comment this one?
+;#[url "ssh://git@github.com:22/"]
+;#	insteadOf = git://github.com/
+;#	insteadOf = http://github.com/
+
+; Hopefully I will no longer have to type passwords with this
+[http]
+	cookieFile = ~/.cookie-git.txt
+	saveCookies = true
+
+; We all know how much I love a good alias LMFAO...
+[alias]
+	# I'm currently working on my shell functions 
+	pu = push
+	ll = pull
+	f = fetch
+	r = remote
+	rv = remote --verbose
+	ru = remote update
+	rrm = remote remove
+	rsu = remote set-url
+	ra = remote add
+	rev = revert
+	re = reset
+	cp = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
+	rh = reset --hard
+	rs = reset --soft
+	rb = rebase
+	rbi = rebase --interactive
+	rbc = rebase --continue
+	rba = rebase --abort
+	rbs = rebase --skip
+	d = diff
+	dc = diff --cached
+	b = bisect
+	c = commit
+	cs = commit --signoff
+	ca = commit --amend
+	cn = commit --no-edit
+[credential]
+	cache = --timeout
+	helper = cache --timeout=7200

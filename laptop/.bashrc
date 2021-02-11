@@ -10,41 +10,42 @@
  #########################################################################
 
 ## Regular colors
-BLK='\e[0;30m'
-RED='\e[0;31m'
-GRN='\e[0;32m'
-YEL='\e[0;33m'
-BLU='\e[0;34m'
-MAG='\e[0;35m'
-CYA='\e[0;36m'
-WHI='\e[0;37m'
-RES='\e[0;00m'
+blk='\033[0;30m'
+red='\033[0;31m'
+grn='\033[0;32m'
+yel='\033[0;33m'
+blu='\033[0;34m'
+mag='\033[0;35m'
+cya='\033[0;36m'
+whi='\033[0;37m'
+res='\033[0;00m'
 
 ## Bright colors
-BBLK='\e[1;90m'
-BRED='\e[1;91m'
-BGRN='\e[1;92m'
-BYEL='\e[1;93m'
-BBLU='\e[1;94m'
-BMAG='\e[1;95m'
-BCYA='\e[1;96m'
-BWHI='\e[1;97m'
-AWHI='\e[2;37m'
+bblk='\033[1;90m'
+bred='\033[1;91m'
+bgrn='\033[1;92m'
+byel='\033[1;93m'
+bblu='\033[1;94m'
+bmag='\033[1;95m'
+bcya='\033[1;96m'
+bwhi='\033[1;97m'
+awhi='\033[2;37m'
+
 echo ""
-echo -e $MAG"				WELCOME BACK... "
+echo -e $mag"				WELCOME BACK... "
 echo ""
 echo ""
 echo ""
-echo -e $BCYA"              @@@@@@@   @@@   @@@@@@@@   @@@@@@@@  @@@  @@@ @@@  "
-echo -e $BCYA"              @@@@@@@@  @@@  @@@@@@@@@  @@@@@@@@@  @@@  @@@@ @@  "
-echo -e $BCYA"              @@!  @@@  @@!  !@@        !@@        @!@  !@!@!@! "
-echo -e $BCYA"              !@   @!@  !@!  !@!        !@!        !@!  !@!@!@!"
-echo -e $CYA"              @!@!@!@   !!@  !@! @!@!@  !@! @!@!@  !!@  @!@ !!@  "
-echo -e $CYA"              !!!@!!!!  !!!  !!! !!@!!  !!! !!@!!  !!!  !@! !!!  "
-echo -e $WHI"              !!:  !!!  !!:  :!!   !!:  :!!   !!:  !!:  !!: !!!  "
-echo -e $WHI"              :!:  !:!  :!:  :!:   !::  :!:   !::  :!:  :!: !:!  "
-echo -e $AWHI"               :: ::::   ::   ::: ::::   ::: ::::  ::   ::  ::  "
-echo -e $AWHI"                : : ::   :     :: :: :    :: :: :  :    ::  : "
+echo -e $bcya"              @@@@@@@   @@@   @@@@@@@@   @@@@@@@@  @@@  @@@ @@@"
+echo -e $bcya"              @@@@@@@@  @@@  @@@@@@@@@  @@@@@@@@@  @@@  @@@@ @@"
+echo -e $bcya"              @@!  @@@  @@!  !@@        !@@        @!@  !@!@!@!"
+echo -e $bcya"              !@   @!@  !@!  !@!        !@!        !@!  !@!@!@!"
+echo -e $cya"              @!@!@!@   !!@  !@! @!@!@  !@! @!@!@  !!@  @!@ !!@"
+echo -e $cya"              !!!@!!!!  !!!  !!! !!@!!  !!! !!@!!  !!!  !@! !!!"
+echo -e $whi"              !!:  !!!  !!:  :!!   !!:  :!!   !!:  !!:  !!: !!!"
+echo -e $whi"              :!:  !:!  :!:  :!:   !::  :!:   !::  :!:  :!: !:!"
+echo -e $awhi"               :: ::::  ::    ::: ::::   ::: ::::  ::   ::  ::"
+echo -e $awhi"                : : ::  :      :: :: :    :: :: :  :    ::  :"
 echo""
 echo""
 echo""
@@ -64,8 +65,8 @@ shopt -s histappend
 shopt -s histreedit
 
 ## For setting history length see HISTSIZE and HISTFILESIZE in bash
-HISTSIZE=800
-HISTFILESIZE=1200
+HISTSIZE=5000
+HISTFILESIZE=6500
 
 ## Check the window size after each command and, if necessary,
 ## update the values of LINES and COLUMNS.
@@ -81,7 +82,6 @@ shopt -s globstar
 #-------------------------------------------------------------------------#
    #############-To Set the Command Prompt, thanks ParrotOS-############
 #-------------------------------------------------------------------------#
-
 ## Set variable identifying the chroot you work in
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -110,8 +110,11 @@ fi
 
 if [ "$color_prompt" = yes ]; then
 
-PS1='\[\033[01;31m\]\342\224\214\342\224\200\[\033[37m\][\[\033[32m\]\u\[\033[33m\]@\[\033[35m\]\h\[\033[37m\]]\[\033[31m\]\342\224\200\[\033[37m\][\[\033[00m\]\[\033[36m\]\w\[\033[01;37m\]]\n\[\033[31m\]\342\224\224\342\224\200\342\224\200\342\225\274\[\033[37m\]$(__git_ps1 $BLU"(%s)")\[\033[33m\]$ \[\033[00m\]'
+#PS1='\[\033[01;32m\]\342\224\214\342\224\200[\[\033[36m\]\u\[\033[00m\]\[\033[01;33m\]@\[\033[01;35m\]\h\[\033[01;32m\]]\342\224\200[\[\033[00m\]\[\033[01;37m\]\w\[\033[01;32m\]]\n\342\224\224\342\224\200\342\224\200\342\225\274$(__git_ps1 " $bwhi($blu%s$bwhi)")\[\033[01;31m\]$ \[\033[00m\]'
     ##PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+PS1='\[\033[01;32m\]\342\224\214\342\224\200[\[\033[36m\]\u\[\033[00m\]\[\033[01;33m\]@\[\033[01;35m\]\h\[\033[01;32m\]]\342\224\200[\[\033[00m\]\[\033[01;37m\]\w\[\033[01;32m\]]\n\342\224\224\342\224\200\342\224\200\342\225\274$(__git_ps1 " ${bwhi}(${res}${blu}%s${bwhi})")\[\033[01;31m\]$ \[\033[00m\]'
+
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -129,40 +132,48 @@ esac
 #-------------------------------------------------------------------------#
    ############-Environment Variables for My Linux Machine-#############
 #-------------------------------------------------------------------------#
-export JAVA_HOME="/home/tux/Studio/android-studio/jre"
-export PATH="${HOME}/Studio/android-studio/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:${NVM_BIN}:${TOOLS}"
-export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+#export JAVA_HOME="/home/tux/Studio/android-studio/jre"
+#export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/bin"
+
+export PATH="/usr/lib/ccache:${Studio}/android-studio/bin:${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+
+export GCC_COLORS="error=01;31:warning=01;33:note=01;37:caret=01;04;32:locus=01:quote=01"
+export MANPAGER=most
 
 ## AOSP build variables for my configuration
-export SRC="/home/tux/Android"
-export TOOLS="${SRC}/workspace/vendor/samsung/zero-usc/tools"
-export TWRP="/home/tux/Android/twrp"
-export DIST_DIR="/home/tux/Android/distrib"
-export OUT_DIR="/home/tux/Out"
-export OUT_DIR_COMMON_BASE="/home/tux/Out/common"
-export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -X:+TieredCompilation -Xmx4G"
-export STUDIO_JDK="/home/tux/Studio/android-studio/jre"
-export ANDROID_SDK_HOME="/home/tux/Studio/sdk"
-export ANDROID_AVD_HOME="/home/tux/Studio/sdk/.android/avd"
-export ANDROID_EMULATOR_HOME="/home/tux/Studio/sdk/emulator"
-export ADB_VENDOR_KEYS="/home/tux/Studio/sdk/.android"
+export Ext="/media/external"
+export Andy="$HOME/Android"
+export Studio="$HOME/Studio"
+export Mirrors="$Ext/mirrors"
+export Tc="$Mirrors/toolchains"
+export Aosp_Mirror="$Mirrors/aosp"
+export Los_Mirror="$Mirrors/lineage/LineageOS"
+
 export QEMU_AUDIO_DRV="alsa"
-export APK_BIN="/home/tux/Studio/android-studio/bin"
+export OUT_DIR="$Ext/build/out"
+export ANDROID_SDK_HOME="$Studio/sdk"
+export DIST_DIR="$Ext/build/distrib"
+export APK_BIN="$Studio/android-studio/bin"
+export ADB_VENDOR_KEYS="$Studio/sdk/.android"
+export STUDIO_JDK="$Studio/android-studio/jre"
+export ANDROID_AVD_HOME="$Studio/sdk/.android/avd"
+export ANDROID_EMULATOR_HOME="$Studio/sdk/emulator"
+export OUT_DIR_COMMON_BASE="$Ext/build/common"
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -X:+TieredCompilation -Xmx4G"
 
 ## CCACHE variables for the build process
-export USE_CCACHE="1"
-export CCACHE_DIR="/home/tux/Android/.ccache"
+export USE_CCACHE=1
+export CCACHE_MAXSIZE=100G
+export CCACHE_DIR="$Mirrors/ccache"
+export CCACHE_LOGFILE="$Mirrors/ccache/cash.log"
 export CCACHE_NLEVELS=7
-export CCACHE_MAXSIZE="100G"
-export CCACHE_BASEDIR="/home/tux/Android"
-export CCACHE_LOGFILE="/home/tux/Android/cash.log"
 
 ## Atom.io environment variables for ease of use
-export ATOM_PROJECTS_DIR="/home/tux/Android"
-export ATOM_HOME="/home/tux/Android/coding/.atom"
-export NVM_DIR="$HOME/Android/coding/.nvm"
-export NVM_BIN="/home/tux/Android/coding/.nvm/versions/node/v14.5.0/bin"
-export NVM_INC="/home/tux/Android/coding/.nvm/versions/node/v14.5.0/include/node"
+#export ATOM_PROJECTS_DIR="$Andy/Projects"
+#export ATOM_HOME="$Andy/coding/.atom"
+export NVM_DIR="$Andy/coding/.nvm"
+export NVM_BIN="$Andy/coding/.nvm/versions/node/v14.5.0/bin"
+export NVM_INC="$Andy/coding/.nvm/versions/node/v14.5.0/include/node"
 
 ## This loads nvm bash_completion
  if [ -s "$NVM_DIR/bash_completion" ]; then
@@ -175,7 +186,6 @@ export NVM_INC="/home/tux/Android/coding/.nvm/versions/node/v14.5.0/include/node
 #-------------------------------------------------------------------------#
   ####################-Finally the ALIAS section-########################
 #-------------------------------------------------------------------------#
-
 ## Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -184,18 +194,17 @@ if [ -x /usr/bin/dircolors ]; then
     alias dire='dir -dULsh --color=always'
     #alias vdir='vdir --color=always'
 
-    alias grab='grep -Un --text --color=always'
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
+    alias grab='grep -Un --text'
 fi
 
-
 ## Some more ls aliases
-alias lm='ls -shAGgpt --author --color=always'
-alias ll='ls -AFlhiNq --author --group-directories-first --color=always'
-alias la='ls -AFC --author --color=always'
-alias l='ls -ALFsht --author --color=always'
+alias la='ls -A'
+alias l='ls -sh'
+alias lm='ll -Gt'
+alias ll='l -Al --author'
 
 ## You may want to put all your additions into a separate file like
 ## ~/.bash_aliases instead of adding them here directly.
@@ -220,6 +229,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-## Load KB-E init file
-##source $SRC/extra_tools/build_essentials/resources/init/init.sh

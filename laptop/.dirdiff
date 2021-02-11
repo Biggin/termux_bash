@@ -1,0 +1,18 @@
+set diffprogram {}
+set showprogram {}
+set rcsflag {}
+set diffiflag {}
+set diffwflag -w
+set diffbflag -b
+set diffBflag -B
+set diffdflag {}
+set ctxlines 3
+set showsame 1
+set underlinetabs 0
+set redisp_immed 1
+set diffnewfirst 0
+set nukefiles {*.o *~ *.orig CVS *.a *.link *.old *.save .depend .*.flags SCCS}
+set filelistfont {Helvetica -12}
+set textfont {Courier -12}
+set nxdirmode 1
+set docvsignore 0

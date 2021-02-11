@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="xml">
+  <snippet override="xml-cdata">
+    <text><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+
+<manifest>
+
+
+
+</manifest>]]></text>
+    <tag>?</tag>
+    <description>CDATA</description>
+    <accelerator><![CDATA[<Shift><Alt>x]]></accelerator>
+  </snippet>
+  <snippet override='xml-"'>
+    <text><![CDATA[<project path="" name="" remote="" />]]></text>
+    <description>Long Attribute Tag</description>
+    <tag>pat</tag>
+    <accelerator><![CDATA[<Shift><Alt>p]]></accelerator>
+  </snippet>
+  <snippet override="xml-&lt;">
+    <text><![CDATA[<default name="" 
+	       fetch="" 
+	       revision="" />
+
+]]></text>
+    <description>Long Tag</description>
+    <tag>def</tag>
+    <accelerator><![CDATA[<Shift><Alt>d]]></accelerator>
+  </snippet>
+  <snippet override="xml-&gt;">
+    <text><![CDATA[<include name="snippets/droid.xml" />]]></text>
+    <description>Short Tag</description>
+    <tag>inc</tag>
+    <accelerator><![CDATA[<Shift><Alt>i]]></accelerator>
+  </snippet>
+</snippets>

@@ -1,0 +1,60 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <data>
+      <entry key="EditorBackSpace">
+        <ActionSummary times="50" last="1605135000866" />
+      </entry>
+      <entry key="EditorCopy">
+        <ActionSummary times="2" last="1605134752639" />
+      </entry>
+      <entry key="EditorDelete">
+        <ActionSummary times="13" last="1605134955941" />
+      </entry>
+      <entry key="EditorDown">
+        <ActionSummary times="4" last="1605134975854" />
+      </entry>
+      <entry key="EditorEnter">
+        <ActionSummary times="9" last="1605134999098" />
+      </entry>
+      <entry key="EditorLeft">
+        <ActionSummary times="7" last="1605134969621" />
+      </entry>
+      <entry key="EditorLineStart">
+        <ActionSummary times="2" last="1605134777920" />
+      </entry>
+      <entry key="EditorLineStartWithSelection">
+        <ActionSummary times="2" last="1605134751016" />
+      </entry>
+      <entry key="EditorPaste">
+        <ActionSummary times="4" last="1605134776521" />
+      </entry>
+      <entry key="EditorRight">
+        <ActionSummary times="36" last="1605135003397" />
+      </entry>
+      <entry key="EditorTab">
+        <ActionSummary times="9" last="1605135005068" />
+      </entry>
+      <entry key="EditorUp">
+        <ActionSummary times="2" last="1605134975288" />
+      </entry>
+      <entry key="Educational.LearnAndTeach">
+        <ActionSummary times="1" last="1605134330548" />
+      </entry>
+      <entry key="SearchEverywhere">
+        <ActionSummary times="1" last="1605134806716" />
+      </entry>
+      <entry key="WelcomeScreen.Settings">
+        <ActionSummary times="2" last="1605134320178" />
+      </entry>
+      <entry key="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+        <ActionSummary times="2" last="1605134539270" />
+      </entry>
+      <entry key="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenComponentFactory$2">
+        <ActionSummary times="2" last="1605134315703" />
+      </entry>
+      <entry key="com.jetbrains.edu.learning.newproject.BrowseCoursesAction">
+        <ActionSummary times="1" last="1605134332874" />
+      </entry>
+    </data>
+  </component>
+</application>

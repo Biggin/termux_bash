@@ -1,0 +1,15 @@
+[MainWindow]
+Height 768=519
+State=AAAA/wAAAAD9AAAAAAAABAAAAAHJAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1366=1024
+
+[Recent Files]
+File1[$e]=$HOME/studio/.android/avd/wife/sdcard/DCIM/Camera/20200302_124127.jpg
+Name1[$e]=20200302_124127.jpg
+
+[SideBar]
+PreferredMetaInfoKeyList=General.Name,General.Size,General.Time,General.ImageSize
+
+[SideBar-ViewMode]
+IsVisible=true

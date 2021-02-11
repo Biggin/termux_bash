@@ -1,0 +1,12 @@
+###### Progress log entry 2020-10-19 07:53:58 ######
+Reinstalling all deployed packages...
+###### Progress log entry 2020-10-19 07:54:05 ######
+###### Progress log entry 2020-10-19 08:24:10 ######
+###### Progress log entry 2020-10-19 08:58:55 ######
+###### Progress log entry 2020-10-19 08:58:59 ######
+ERROR: (com.sun.star.lang.IllegalArgumentException) { { { Message = "There is no such extension deployed: org.broffice.adicionarfigura", Context = (com.sun.star.uno.XInterface) @55900a6aac90 } }, ArgumentPosition = (short) -1 }
+ERROR: (com.sun.star.lang.IllegalArgumentException) { { { Message = "There is no such extension deployed: org.broffice.adicionarfigura", Context = (com.sun.star.uno.XInterface) @55900a6aac90 } }, ArgumentPosition = (short) -1 }
+Copying: addpics-2-5-0.oxt
+###### Progress log entry 2020-10-19 09:09:59 ######
+###### Progress log entry 2020-10-19 10:02:16 ######
+###### Progress log entry 2020-10-19 10:38:32 ######

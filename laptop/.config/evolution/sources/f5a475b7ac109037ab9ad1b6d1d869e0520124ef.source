@@ -1,0 +1,28 @@
+[Data Source]
+DisplayName=dumb.droid.dev@outlook.com
+Enabled=true
+Parent=ec6f2df82aeafeac95c87ad01457f1914ba9b678
+
+[Mail Composition]
+Bcc=
+Cc=
+DraftsFolder=folder://local/Drafts
+ReplyStyle=default
+SignImip=true
+TemplatesFolder=
+StartBottom=inconsistent
+TopSignature=inconsistent
+
+[Mail Identity]
+Address=dumb.droid.dev@outlook.com
+Aliases=
+Name=
+Organization=
+ReplyTo=
+SignatureUid=none
+
+[Mail Submission]
+SentFolder=folder://local/Sent
+TransportUid=fc3e7d77ab287bfd7c1535d3efda4e817649d979
+RepliesToOriginFolder=false
+UseSentFolder=true

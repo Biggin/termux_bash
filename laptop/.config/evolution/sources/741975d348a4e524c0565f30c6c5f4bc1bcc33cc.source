@@ -1,0 +1,41 @@
+[Data Source]
+DisplayName=dumb.droid.dev@gmail.com
+Enabled=true
+Parent=
+
+[GNOME Online Accounts]
+AccountId=account_1591434272_0
+CalendarUrl=https://apidata.googleusercontent.com/caldav/v2/dumb.droid.dev@gmail.com/user
+ContactsUrl=https://www.googleapis.com/.well-known/carddav
+Name=
+Address=dumb.droid.dev@gmail.com
+
+[Collection]
+BackendName=google
+CalendarEnabled=true
+ContactsEnabled=true
+Identity=dumb.droid.dev@gmail.com
+MailEnabled=true
+CalendarUrl=
+ContactsUrl=
+
+[WebDAV Backend]
+AvoidIfmatch=false
+CalendarAutoSchedule=false
+DisplayName=
+EmailAddress=
+ResourcePath=
+ResourceQuery=
+SslTrust=
+
+[Authentication]
+Host=
+Method=OAuth2
+Port=0
+ProxyUid=system-proxy
+RememberPassword=true
+User=
+CredentialName=
+
+[Security]
+Method=none

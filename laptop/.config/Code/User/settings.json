@@ -1,0 +1,6 @@
+{
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Solarized Dark"
+}

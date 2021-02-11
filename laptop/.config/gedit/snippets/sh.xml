@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="sh">
+  <snippet override="sh-sh">
+    <text><![CDATA[#!/bin/env bash
+$0]]></text>
+    <description>#!/bin/sh</description>
+    <tag>sh</tag>
+  </snippet>
+</snippets>

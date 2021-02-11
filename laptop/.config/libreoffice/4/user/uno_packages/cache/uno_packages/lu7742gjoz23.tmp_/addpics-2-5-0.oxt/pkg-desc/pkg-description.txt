@@ -1,0 +1,4 @@
+AddPics creates a text document from pictures of scanned pages with the correct page orientation (portrait or landscape) for each page of document.
+
+
+

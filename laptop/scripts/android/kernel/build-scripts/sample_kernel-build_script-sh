@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Kernel Build Script
+
+## Saved while searching for a fix for the error of "ANDROID_MAJOR_VERSION not set", it's a Samsung thing apparently...
+BUILD_WHERE=$(pwd)
+BUILD_KERNEL_DIR=$BUILD_WHERE
+BUILD_ROOT_DIR=$BUILD_KERNEL_DIR/..
+BUILD_KERNEL_OUT_DIR=$BUILD_ROOT_DIR/kernel_out/KERNEL_OBJ
+PRODUCT_OUT=$BUILD_ROOT_DIR/kernel_out
+
+BUILD_JOB_NUMBER=`grep processor /proc/cpuinfo|wc -l`
+KERNEL_DEFCONFIG=exynos8895-dreamlte_defconfig
+KERNEL_IMG=$PRODUCT_OUT/Image
+
+FUNC_GENERATE_DEFCONFIG()
+{
+	echo ""
+        echo "=============================================="
+        echo "START : FUNC_GENERATE_DEFCONFIG"
+        echo "=============================================="
+        echo "build config="$KERNEL_DEFCONFIG ""
+        echo ""
+
+	make -C $BUILD_KERNEL_DIR O=$BUILD_KERNEL_OUT_DIR -j$BUILD_JOB_NUMBER ARCH=arm64 \
+			CC=$BUILD_KERNEL_CLANG \
+			CLANG_TRIPLE=aarch64-linux-gnu- \
+			CROSS_COMPILE=$BUILD_KERNEL_GCC \
+			$KERNEL_DEFCONFIG || exit -1
+
+	cp $BUILD_KERNEL_OUT_DIR/.config $BUILD_KERNEL_DIR/arch/arm64/configs/$KERNEL_DEFCONFIG
+
+	echo ""
+	echo "================================="
+	echo "END   : FUNC_GENERATE_DEFCONFIG"
+	echo "================================="
+	echo ""
+}
+
+FUNC_BUILD_KERNEL()
+{
+	echo ""
+	echo "================================="
+	echo "START   : FUNC_BUILD_KERNEL"
+	echo "================================="
+	echo ""
+	rm $KERNEL_IMG $BUILD_KERNEL_OUT_DIR/arch/arm64/boot/Image
+	rm -rf $BUILD_KERNEL_OUT_DIR/arch/arm64/boot/dts
+
+	make -C $BUILD_KERNEL_DIR O=$BUILD_KERNEL_OUT_DIR -j$BUILD_JOB_NUMBER ARCH=arm64 \
+			CC=$BUILD_KERNEL_CLANG \
+			CLANG_TRIPLE=aarch64-linux-gnu- \
+			CROSS_COMPILE=$BUILD_KERNEL_GCC || exit -1
+
+	cp $BUILD_KERNEL_OUT_DIR/arch/arm64/boot/Image $KERNEL_IMG
+	echo "Made Kernel image: $KERNEL_IMG"
+	echo "================================="
+	echo "END   : FUNC_BUILD_KERNEL"
+	echo "================================="
+	echo ""
+}
+
+
+# MAIN FUNCTION
+(
+    START_TIME=`date +%s`
+
+    FUNC_GENERATE_DEFCONFIG
+
+    FUNC_BUILD_KERNEL
+
+    END_TIME=`date +%s`
+
+    let "ELAPSED_TIME=$END_TIME-$START_TIME"
+    echo "Total compile time is $ELAPSED_TIME seconds"
+) 2>&1
+
+if [ ! -f "$KERNEL_IMG" ]; then
+  exit -1
+fi

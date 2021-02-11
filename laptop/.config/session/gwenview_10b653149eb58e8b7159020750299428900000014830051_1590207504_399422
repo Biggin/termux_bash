@@ -1,0 +1,13 @@
+[1]
+Page=2
+Url=file:///home/tux/studio/.android/avd/wife/sdcard/DCIM/Camera/20200302_124127.jpg
+
+[Number]
+NumberOfWindows=1
+
+[WindowProperties1]
+ClassName=Gwenview::MainWindow
+Height 768=705
+ObjectName=MainWindow#1
+State=AAAA/wAAAAD9AAAAAAAABVYAAAKGAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+Width 1366=1366

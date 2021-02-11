@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="Module1" script:language="StarBasic">&apos;
+&apos; *****************************************
+&apos; 
+&apos; Gustavo Buzzatti Pacheco - ProDesk
+&apos; gbpacheco@gmail.com
+&apos;
+&apos; Histórico de Modificações:
+&apos; 05/10/09 - inclusão da figura no novo documento sem vínculos com o arquivo de origem.
+&apos; 05/10/09 - restrição da inclusão de figura apenas no formato .GIF.
+&apos; 05/10/09 - inclusão do trecho de código que ordena os arquivos por ordem de data.
+&apos; 05/10/09 - modificação de ThisComponent para novo documento criado.
+&apos; 06/10/09 - inclusão da macro PickFolder para procura da pasta de arquivos.
+&apos; 06/10/09 - criação do protótipo incorporado à um documento de teste
+&apos; 08/10/09 - testes gerais e retirada da restrição de figura GIF.
+&apos; 14/10/09 - retirada da inclusão da quebra de página na última figura.
+&apos; 18/03/10 - inclusão do diálogo com as opções de ordenação numérica, alfabética e por data.
+&apos; 19/03/10 - criação das opções de ordenação na sub Principal.
+&apos; 22/03/10 - criação da msgbox para o campo txtNomeArquivo vazio.
+&apos; 10/01/12 - criação da manipulação da âncora da imagem (no parágrafo ou na página)
+&apos; 
+&apos; Chamada principal: Abrir_Dialogo
+&apos;
+
+Global strNomeArquivo as string
+Global objDlg As Object
+Public strMsg(10) as string
+
+Sub initStrLocale as String
+    &apos; from extension DataForm 
+	&apos; inizializza l&apos;array strLocale per la lingua
+	Dim OOLangue as string
+	Dim aSettings, aConfigProvider
+	Dim aParams2(0) As new com.sun.star.beans.PropertyValue
+	aConfigProvider = createUnoService(&quot;com.sun.star.configuration.ConfigurationProvider&quot;)
+	aParams2(0).Name = &quot;nodepath&quot;
+	aParams2(0).Value = &quot;/org.openoffice.Setup/L10N&quot;
+	aSettings = aConfigProvider.createInstanceWithArguments(&quot;com.sun.star.configuration.ConfigurationAccess&quot;, aParams2())
+	OOLangue = aSettings.getbyname(&quot;ooLocale&quot;)
+	&apos; --
+	Select Case OOLangue
+	Case &quot;pt-BR&quot; &apos; Brazilian Portuguese
+		strMsg(0) = &quot;Diretório inválido.&quot;
+		strMsg(1) = &quot;Erro&quot;
+		strMsg(2) = &quot;Padrão&quot;
+		strMsg(3) = &quot;Paisagem&quot;
+	Case &quot;en&quot;
+		strMsg(0) = &quot;Invalid path.&quot;
+		strMsg(1) = &quot;Atention&quot;
+		strMsg(2) = &quot;Default&quot;
+		strMsg(3) = &quot;Landscape&quot;
+	Case &quot;de&quot;
+		strMsg(0) = &quot;Pfad nicht gefunden.&quot;
+		strMsg(1) = &quot;Achtung&quot;
+		strMsg(2) = &quot;Standard&quot;
+		strMsg(3) = &quot;Querformat&quot;
+	Case &quot;fr&quot;
+		strMsg(0) = &quot;Chemin incorrect.&quot;
+		strMsg(1) = &quot;Attention&quot;
+		strMsg(2) = &quot;Par défault&quot;
+		strMsg(3) = &quot;Paysage&quot;
+
+	Case else	
+		strMsg(0) = &quot;Invalid path.&quot;
+		strMsg(1) = &quot;Atention&quot;
+		strMsg(2) = &quot;Default&quot;
+		strMsg(3) = &quot;Landscape&quot;	
+	End Select
+End Sub
+
+
+Sub Abrir_Dialogo
+ DialogLibraries.LoadLibrary(&quot;AdicionaFigura&quot;)
+ objDlg = CreateUnoDialog(DialogLibraries.AdicionaFigura.Dialog1)
+ objDlg.Execute()
+End Sub
+
+
+Sub Localizar_arquivo 
+ oPathSettings = CreateUnoService(&quot;com.sun.star.util.PathSettings&quot; )
+ strPath = oPathSettings.Work
+  if GetGUIType = 4 then
+     objDlg.Model.txtNomeArquivo.Text = PickFolder(strPath) &amp; &quot;/&quot;                  	
+   else
+     objDlg.Model.txtNomeArquivo.Text = PickFolder(strPath) &amp; &quot;\&quot;                 	
+  endif 
+   TextoModificado
+End Sub
+
+Sub Cancelar_Dialogo
+ objDlg.EndExecute()
+ End
+End Sub
+
+Sub TextoModificado
+  if objDlg.Model.txtNomeArquivo.Text &lt;&gt; &quot;&quot; then
+     objDlg.Model.cmdGerarODT.Enabled = true
+   else
+     objDlg.Model.cmdGerarODT.Enabled = false   
+  endif  
+
+End Sub
+
+
+Sub Principal
+       Dim oFrame
+       Dim oDisp
+       Dim sPathBase as string
+       Dim sPath as string
+       Dim NoArgs()
+       Dim Size As New com.sun.star.awt.Size
+  
+  initStrLocale
+       
+  if not FileExists(ConvertToURL(objDlg.Model.txtNomeArquivo.Text)) then 
+      MsgBox strMsg(0), 48,strMsg(1)
+      objDlg.Model.txtNomeArquivo.Text = &quot;&quot;
+      objDlg.getcontrol(&quot;txtNomeArquivo&quot;).setfocus
+      Exit Sub 
+  else       
+   
+       
+       oDocNew = StarDesktop.loadComponentFromURL(&quot;private:factory/swriter&quot;,&quot;_blank&quot;,0,NoArgs())	&apos; oDocNew é o novo documento que conterá as figuras
+       oFrame = oDocNew.CurrentController.Frame														&apos; oFrame é o objeto que receberá as figuras dentro do documento
+       oDisp = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;)								&apos; Dispach para executar a inclusão das figuras
+
+       Dim oProp(1) as new com.sun.star.beans.PropertyValue											&apos; vetor de propriedade que não inclui o vínculo para o arquivo de origem
+       oProp(0).Name = &quot;FileName&quot;
+       oProp(1).Name = &quot;AsLink&quot;
+       oProp(1).Value = False
+
+ 
+
+
+       Dim sValue as String																			&apos; sValue é o nome do arquivo
+       sPathBase = objDlg.Model.txtNomeArquivo.Text												
+       If SPathBase = &quot;\&quot; Then																		&apos; se clicou em cancelar, então finaliza
+           oDocNew.dispose
+           Exit Sub
+       Endif    
+       sPath = sPathBase
+       sPath2 = &quot;*&quot; &apos; 																			&apos; restrição da inclusão para arquivos GIF
+
+       Dim sEntry(512, 2) As String 																&apos; Número de entradas possíveis
+       Dim iCount As Integer																		&apos; primeiro contador do vetor
+       Dim iCount2 As Integer																		&apos; segundo contador do vetor
+       Dim sTemp As String
+
+       sValue = Dir$(ConvertToURL(sPath) + sPath2, 0 + 2 + 4) 													&apos; composição do nome do arquivo.
+       value = 1																					&apos; índice do vetor
+       svalStr = &quot;&quot;
+
+       Do
+          if lcase(right$(sValue,3))=&quot;gif&quot; or  lcase(right$(sValue,3))=&quot;jpg&quot; or  lcase(right$(sValue,3))=&quot;png&quot; or  lcase(right$(sValue,3))=&quot;bmp&quot; or  lcase(right$(sValue,4))=&quot;tiff&quot; or  lcase(right$(sValue,3))=&quot;tif&quot; then
+               sEntry(value, 0) = sValue															&apos; criação do vetor com os nomes dos arquivos
+               sEntry(value, 1) = FileDateTime( &quot;file://&quot; + sPath + sValue)      
+               value = value + 1
+        endif         
+               sValue = Dir$
+       Loop Until sValue = &quot;&quot;
+       value = value - 1 
+
+       ReDim Preserve sEntry(value, 2) As String 													
+     
+       sortOnFileDateTime = 0 																		&apos; 0: ordenação alfabética do nome do arquivo ou 1: ordenação por data do arquivo 
+         
+      if objDlg.Model.listSortCriteria.SelectedItems(0) = 0 then 
+        For iCount = 1 To value																		&apos; procedimento de ordenação de sEntry
+               For iCount2 = iCount + 1 To value
+                       If val(sEntry(iCount, sortOnFileDateTime)) &gt; val(sEntry(iCount2, sortOnFileDateTime)) Then
+                               sTemp0 = sEntry(iCount, 0)
+                               sTemp1 = sEntry(iCount, 1)
+                               sEntry(iCount, 0) = sEntry(iCount2, 0)
+                               sEntry(iCount, 1) = sEntry(iCount2, 1)
+                               sEntry(iCount2, 0) = sTemp0
+                               sEntry(iCount2, 1) = sTemp1
+                       End If
+               Next iCount2
+        Next iCount
+      Endif    
+    
+    if objDlg.Model.listSortCriteria.SelectedItems(0) = 1 then 
+            For iCount = 1 To value																		&apos; procedimento de ordenação de sEntry
+               For iCount2 = iCount + 1 To value
+                       If sEntry(iCount, sortOnFileDateTime) &gt; sEntry(iCount2, sortOnFileDateTime) Then
+                               sTemp0 = sEntry(iCount, 0)
+                               sTemp1 = sEntry(iCount, 1)
+                               sEntry(iCount, 0) = sEntry(iCount2, 0)
+                               sEntry(iCount, 1) = sEntry(iCount2, 1)
+                               sEntry(iCount2, 0) = sTemp0
+                               sEntry(iCount2, 1) = sTemp1
+                       End If
+               Next iCount2
+        Next iCount
+    endif 
+
+  if objDlg.Model.listSortCriteria.SelectedItems(0) = 2 then 
+       sortOnFileDateTime = 1 		
+       For iCount = 1 To value																		&apos; procedimento de ordenação de sEntry
+              For iCount2 = iCount + 1 To value
+                       If sEntry(iCount, sortOnFileDateTime) &gt; sEntry(iCount2, sortOnFileDateTime) Then
+                               sTemp0 = sEntry(iCount, 0)
+                               sTemp1 = sEntry(iCount, 1)
+                               sEntry(iCount, 0) = sEntry(iCount2, 0)
+                               sEntry(iCount, 1) = sEntry(iCount2, 1)
+                               sEntry(iCount2, 0) = sTemp0
+                               sEntry(iCount2, 1) = sTemp1
+                       End If
+               Next iCount2
+        Next iCount  
+   
+  endif 
+      
+    
+       For iCount = 1 To value																		&apos; inclusão da imagem no documento
+               oProp(0).Value = &quot;file://&quot; + sPath + sEntry(iCount, 0)
+               oDisp.executeDispatch(oFrame, &quot;.uno:InsertGraphic&quot;, &quot;&quot;, 0, oProp())					&apos; insere imagem
+               oDisp.executeDispatch(oFrame, &quot;.uno:SelectObject&quot;, &quot;&quot;, 0, oProp())					&apos; seleciona imagem
+               oDisp.executeDispatch(oFrame, &quot;.uno:SelectObject&quot;, &quot;&quot;, 0, oProp())					&apos; deseleciona imagem
+  		       oDrawPage = oDocNew.DrawPage
+			   oDrawPageObj = oDrawPage.getByIndex(oDrawPage.Count - 1)
+			   
+			   If oDrawPageObj.Size.width &gt; oDrawPageObj.Size.Height then
+  			        Aplica_Estilo (strMsg(3))
+
+  			        Select Case objDlg.Model.listPictureAnchor.SelectedItems(0)
+  			        Case 0
+  			           oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PAGE
+					Case 1   
+					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+					Case 2
+   					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_CHARACTER
+   					Case 3   
+   					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER
+   					End Select
+   					
+		            Size.Width = (18000*29700)/21000
+					Size.Height = 18000
+					oDrawPageObj.Size = Size 			            
+  			      Else
+
+        		     Aplica_Estilo (strMsg(2))
+        		      Select Case objDlg.Model.listPictureAnchor.SelectedItems(0)
+  			        Case 0
+  			           oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PAGE
+					Case 1   
+					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_PARAGRAPH
+					Case 2
+   					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AT_CHARACTER
+   					Case 3   
+   					   oDrawPageObj.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER
+   					End Select
+  			    End if                
+               
+               oDisp.executeDispatch(oFrame, &quot;.uno:gotoEnd&quot;, &quot;&quot;, 0, Array())						&apos; posiciona no final do texto
+               oDisp.executeDispatch(oFrame, &quot;.uno:insertPara&quot;, &quot;&quot;, 0, Array())						&apos; incluir 5 parágrafos em branco
+             if iCount &lt; value then 
+              Insere_Quebra_Estilo (strMsg(2))				&apos; insere a quebra de página, a menos que seja a última figura
+             end if   
+       Next iCount
+	Fecha_Estilista
+ 	objDlg.EndExecute()
+ 	
+ end if 	
+End Sub 
+
+
+Function PickFolder(cFolder)
+   oFolderPickerDlg = createUnoService( &quot;com.sun.star.ui.dialogs.FolderPicker&quot; )
+
+   If Len( cFolder ) &gt; 0 Then
+      oFolderPickerDlg.setDisplayDirectory( ConvertToURL( cFolder ) )
+   EndIf
+      
+   oFolderPickerDlg.execute()  
+   cPickedFolder = oFolderPickerDlg.getDirectory()  
+   PickFolder = ConvertFromURL( cPickedFolder )
+End Function 
+
+
+sub Aplica_Estilo (strNomeEstilo as String)
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;)
+
+rem ----------------------------------------------------------------------
+dim args1(0) as new com.sun.star.beans.PropertyValue
+args1(0).Name = &quot;DesignerDialog&quot;
+args1(0).Value = true
+
+dispatcher.executeDispatch(document, &quot;.uno:DesignerDialog&quot;, &quot;&quot;, 0, args1())
+
+rem ----------------------------------------------------------------------
+dim args2(1) as new com.sun.star.beans.PropertyValue
+args2(0).Name = &quot;Template&quot;
+args2(0).Value = strNomeEstilo
+args2(1).Name = &quot;Family&quot;
+args2(1).Value = 8
+
+dispatcher.executeDispatch(document, &quot;.uno:StyleApply&quot;, &quot;&quot;, 0, args2())
+end sub
+
+
+sub Insere_Quebra_Estilo (strNomeEstilo as String)
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;)
+
+rem ----------------------------------------------------------------------
+dim args1(2) as new com.sun.star.beans.PropertyValue
+args1(0).Name = &quot;Kind&quot;
+args1(0).Value = 3
+args1(1).Name = &quot;TemplateName&quot;
+args1(1).Value = strNomeEstilo
+args1(2).Name = &quot;PageNumber&quot;
+args1(2).Value = 0
+
+dispatcher.executeDispatch(document, &quot;.uno:InsertBreak&quot;, &quot;&quot;, 0, args1())
+
+end sub
+
+Function createStruct(strTypeName)
+   Set classSize= objCoreReflection.forName(strTypeName)
+   Dim aStruct
+   classSize.createObject aStruct
+   Set createStruct= aStruct
+End Function 
+
+
+
+sub Fecha_Estilista
+rem ----------------------------------------------------------------------
+rem define variables
+dim document   as object
+dim dispatcher as object
+rem ----------------------------------------------------------------------
+rem get access to the document
+document   = ThisComponent.CurrentController.Frame
+dispatcher = createUnoService(&quot;com.sun.star.frame.DispatchHelper&quot;)
+
+rem ----------------------------------------------------------------------
+dim args1(0) as new com.sun.star.beans.PropertyValue
+args1(0).Name = &quot;DesignerDialog&quot;
+args1(0).Value = false
+
+dispatcher.executeDispatch(document, &quot;.uno:DesignerDialog&quot;, &quot;&quot;, 0, args1())
+End Sub
+</script:module>

@@ -1,0 +1,64 @@
+## My global config options for working with git and repo-tool
+
+; Core Variables
+[core]
+	# Don't trust file modes, lol :)
+	filemode = false
+	ignorecase = false
+	logAllRefUpdates = always
+	editor = nano
+	pager = less
+
+; The diff algorithm of greatness
+[diff]
+	renames = true
+	colorMoved = true
+
+[grep]
+	lineNumber = true
+	
+; Self explanatory I would think
+[user]
+	name = clnelson
+	email = biggin61186@gmail.com
+
+[color]
+	ui = always
+	grep = always
+	interactive = always
+	pager = true
+	status = always
+	showBranch = always
+	branch = always
+
+[color "branch"]
+	current = green
+	local = yellow
+	remote = red
+	plain = white
+	upstream = cyan bold
+
+; Two-Factor verification token
+;[remote]
+;	url = https://github.com/
+;	token = 84a1dddd9789327e9297368067500c0f3d4ec587
+
+; Do I really need to comment this one?
+#;[url "ssh://git@github.com:22/"]
+#;[url "https://github.com/"]
+#;	insteadOf = git://github.com/
+#;	insteadOf = http://github.com/
+
+; Hopefully I will no longer have to type passwords with this
+[http]
+	cookieFile = ~/.cookie-git.txt
+	saveCookies = true
+
+; Pass-cache to save a little typing...
+[credential]
+	helper = cache --timeout=7200
+
+[pull]
+	rebase = false
+[merge]
+	conflictStyle = diff3
