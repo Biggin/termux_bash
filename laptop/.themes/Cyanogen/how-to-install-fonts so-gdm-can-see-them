@@ -1,8 +1,0 @@
-A useful extract from http://vietunicode.sourceforge.net/howto/fontlinux.html
-
-
-Create fonts.scale and fonts.dir
-
-
-# mkfontscale && mkfontdir
-# fc-cache
