@@ -19,29 +19,29 @@
     ##########################################################
 
 #: Regular colors are listed first and BOLD colors are listed second.
-Res="\033[0m"
-Bfg="\033[1m"
+export Res="\033[0m"
+export Bfg="\033[1m"
 
-Blk="\033[30m"
-Bblk="\033[01;30m"
+export Blk="\033[30m"
+export Bblk="\033[01;30m"
 
-Red="\033[31m"
-Bred="\033[01;31m"
+export Red="\033[31m"
+export Bred="\033[01;31m"
 
-Grn="\033[32m"
-Bgrn="\033[01;32m"
+export Grn="\033[32m"
+export Bgrn="\033[01;32m"
 
-Yel="\033[33m"
-Byel="\033[01;33m"
+export Yel="\033[33m"
+export Byel="\033[01;33m"
 
-Blu="\033[34m"
-Bblu="\033[01;34m"
+export Blu="\033[34m"
+export Bblu="\033[01;34m"
 
-Mag="\033[35m"
-Bmag="\033[01;35m"
+export Mag="\033[35m"
+export Bmag="\033[01;35m"
 
-Cya="\033[36m"
-Bcya="\033[01;36m"
+export Cya="\033[36m"
+export Bcya="\033[01;36m"
 
-Whi="\033[37m"
-Bwhi="\033[01;37m"
+export Whi="\033[37m"
+export Bwhi="\033[01;37m"
