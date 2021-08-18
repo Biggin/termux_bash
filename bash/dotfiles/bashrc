@@ -59,6 +59,9 @@ completions=(
 aliases=(
   general
   bash
+  android
+  git
+  nmap
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -66,7 +69,7 @@ aliases=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+#  git
   bashmarks
 )
 
@@ -84,13 +87,13 @@ source $OSH/oh-my-bash.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR=nano
+export EDITOR='nano'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
@@ -100,3 +103,5 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 alias omy="nano $OSH/oh-my-bash.sh"
+
+eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)

@@ -66,8 +66,8 @@ shopt -s histappend
 shopt -s histreedit
 
 ## For setting history length see HISTSIZE and HISTFILESIZE in bash
-HISTSIZE=1000
-HISTFILESIZE=1200
+HISTSIZE=10000
+HISTFILESIZE=12000
 
 ## Check the window size after each command and, if necessary,
 ## update the values of LINES and COLUMNS.
@@ -77,9 +77,9 @@ shopt -s checkwinsize
 ## match all files and zero or more directories and subdirectories.
 shopt -s globstar
 
-	#----------------------------------------------------------#
+#----------------------------------------------------------#
    	     ###-To Set the Command Prompt, thanks ParrotOS-###
-	#----------------------------------------------------------#
+#----------------------------------------------------------#
 ## Set variable identifying the chroot you work in
 #if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 #    debian_chroot=$(cat /etc/debian_chroot)
@@ -99,39 +99,52 @@ xterm*|rxvt*)
     ;;
 esac
 
-   #----------------------------------------------------------#
+#----------------------------------------------------------#
         ###-Environment Variables for My Linux Machine-###
-   #----------------------------------------------------------#
+#----------------------------------------------------------#
 
-   #----------------------------------------------------------#
+#----------------------------------------------------------#
          ##########-Finally the ALIAS section-##########
-   #----------------------------------------------------------#
+#----------------------------------------------------------#
 
 ## Enable color support of ls and also add handy aliases
 eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    alias dire='dir -dULsh --color=always'
-    alias vdir='vdir --color=always'
+    #alias dire='dir -dULsh --color=always'
+    #alias vdir='vdir --color=always'
     alias grep='grep --color=always'
     alias grab='grep -Unw --text'
-    alias fgrep='fgrep --color=always'
-    alias egrep='egrep --color=always'
+    #alias fgrep='fgrep --color=always'
+    #alias egrep='egrep --color=always'
 
 ## Some more ls aliases
 alias ls='ls -FC --color=always'
 alias la='ls -A'
 alias l='ls -sh'
 alias ll='l -Al --author'
+alias l.='la -d .*'
 
-## You may want to put all your additions into a separate file like
-## ~/.bash_aliases instead of adding them here directly.
-## See /usr/share/doc/bash-doc/examples in the bash-doc package.
+## You may want to put all your additions into a
+## separate file like ~/.bash_aliases instead of
+## adding them here directly. See
+## /usr/share/doc/bash-doc/examples in the
+## bash-doc package.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-## My additional shell functions are listed in various files, adding
-## functionality to source them upon login.
+## My additional shell functions are listed in
+## various files, adding functionality to source
+## them upon login.
 if [ -f ~/.bash_functions ]; then
 	. ~/.bash_functions
+fi
+
+## Source files for git completion and branch information in my prompt
+if [ -f ~/.git-prompt.sh ]; then
+	. ~/.git-prompt.sh
+fi
+
+if [ -f ~/.git-completion.bash ]; then
+	. ~/.git-completion.bash
 fi

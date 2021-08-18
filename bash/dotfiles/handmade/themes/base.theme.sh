@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/env bash
 
 CLOCK_CHAR_THEME_PROMPT_PREFIX=''
 CLOCK_CHAR_THEME_PROMPT_SUFFIX=''
