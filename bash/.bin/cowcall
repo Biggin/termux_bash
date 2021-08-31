@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-## simple command to parse a different quote & cow file each time
-fortune | cowsay -f "$(ls -1 $PREFIX/share/cows | shuf -n 1)" -n
