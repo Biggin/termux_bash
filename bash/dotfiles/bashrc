@@ -1,6 +1,6 @@
 # Path to your oh-my-bash installation.
-export OSH=$HOME/.dotfiles
-export PATH=~/.local/bin:$PATH
+export OSH=${HOME}/.dotfiles
+export PATH=~/.local/bin:${PATH}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -42,7 +42,7 @@ COMPLETION_WAITING_DOTS="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $OSH/custom?
-OSH_CUSTOM=$OSH/handmade
+OSH_CUSTOM=${OSH}/handmade
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
 # Custom completions may be added to ~/.oh-my-bash/custom/completions/
@@ -58,7 +58,6 @@ completions=(
 # Example format: aliases=(vagrant composer git-avh)
 # Add wisely, as too many aliases slow down shell startup.
 aliases=(
-  general
   bash
   android
   git
@@ -70,11 +69,10 @@ aliases=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-#  git
   bashmarks
 )
 
-source $OSH/oh-my-bash.sh
+source ${OSH}/oh-my-bash.sh
 
 # User configuration
 # Enable colored man pages
@@ -105,5 +103,11 @@ export EDITOR='nano'
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 alias omy="nano $OSH/oh-my-bash.sh"
+
+# Variables as shorthand for dirs to cd into
+export usr="${PREFIX}"
+export sd="${HOME}/storage/shared"
+export down="${HOME}/storage/downloads"
+export made="${HOME}/.dotfiles/handmade"
 
 eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)

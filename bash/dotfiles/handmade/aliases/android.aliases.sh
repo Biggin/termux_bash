@@ -4,6 +4,8 @@
 # Utilizing the adb & fastboot packages
 #
 ###########################################################
+alias aliases.adb='nano ~/.dotfiles/handmade/aliases/android.aliases.sh'
+
 alias adb_='adb devices -l'
 alias adbk='adb kill-server'
 alias adb.rt='adb root'

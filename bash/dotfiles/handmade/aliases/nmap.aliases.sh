@@ -14,6 +14,7 @@
 #  -sA - TCP ACK scan
 #  -F - fast scan
 #  --script=vuln - also access vulnerabilities in target
+alias aliases.nmap='nano $OSH_CUSTOM/aliases/nmap.aliases.sh'
 
 alias nmap_open_ports="nmap --open"
 alias nmap_list_interfaces="nmap --iflist"
