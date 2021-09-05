@@ -76,17 +76,26 @@ plugins=(
 
 source $OSH/oh-my-bash.sh
 
+# User configuration
+# Enable colored man pages
+export MANPAGER="most"
+
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 export EDITOR='nano'
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# git
-GIT_TOKEN="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"
 
 # Set personal aliases, overriding those provided by oh-my-bash libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-bash
@@ -94,6 +103,7 @@ GIT_TOKEN="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"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+# alias bashconfig="mate ~/.bashrc"
 alias omy="nano $OSH/oh-my-bash.sh"
 
 eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)

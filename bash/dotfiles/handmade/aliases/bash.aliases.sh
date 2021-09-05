@@ -62,7 +62,7 @@ alias wg='wget2'
 alias wget2='wget2 -c --progress=bar'
 alias histg='history | grep'
 alias rc="nano $HOME/.bashrc"
-alias colors="bash ~/scripts/homemade/print_colors.sh"
+alias colors="bash ~/scripts/setup/print_colors.sh"
 alias funcs="nano -Y sh $OSH_CUSTOM/funcs.sh"
 alias aliases="nano -Y sh $OSH_CUSTOM/aliases/bash.aliases.sh"
 alias src="source ~/.bashrc"
@@ -101,6 +101,21 @@ alias dp.lg='dpkg -l | grep'
 alias dp.L='dpkg -L'
 alias dp.s='dpkg -S'
 alias dp.con='dpkg --configure -a'
+
+## Mega.nz cli aliases for different accounts
+alias megadf.b="megadf -h --config=${HOME}/.biggin.megarc"
+alias megals.b="megals -nh --config=${HOME}/.biggin.megarc /Root"
+alias megadl.b="megadl --config=${HOME}/.biggin.megarc --path"
+alias megacopy.b="megacopy --config=${HOME}/.biggin.megarc"
+alias megaget.b="megaget --config=${HOME}/.biggin.megarc --path"
+alias megaput.b="megaput --config=${HOME}/.biggin.megarc --enable-previews --path"
+
+alias megadf.d="megadf -h --config=${HOME}/.droid.megarc"
+alias megals.d="megals -nh --config=${HOME}/.droid.megarc /Root"
+alias megadl.d="megadl --config=${HOME}/.droid.megarc --path"
+alias megacopy.d="megacopy --config=${HOME}/.droid.megarc"
+alias megaget.d="megaget --config=${HOME}/.droid.megarc --path"
+alias megaput.d="megaput --config=${HOME}/.droid.megarc --enable-previews --path"
 
 ## Git for lazy people
 #alias git.h='git help'
