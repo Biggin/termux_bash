@@ -1,17 +1,15 @@
-source ~/scripts/setup/colors.sh
-
 ## Function to display uptime of a system. All credits to the original author.
 function upinfo() {
     echo -ne "${Blu}${HOSTNAME} ${Mag}uptime is ${Yel} \\t "
     uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10,$11}'
 }
 
-## Extract any compRessed file type with one universal command
+## Extract any compressed file type with one universal command
 function extract {
  if [ -z "$1" ]; then
       # display usage if no parameters given
-      echo -e $Yel"Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-      echo -e $Yel"       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"$Res
+      echo -e ${Bgrn}"Usage${Yel}: ${Bwhi}extract ${Yel}<${Bwhi}path/file_name${Yel}>.<${Red}zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz${Yel}>"
+      echo -e ${Bwhi}"       extract ${Yel}<${Bwhi}path/file_name_1${Yel}.${Red}ext${Yel}> [${Bwhi}path/file_name_2${Yel}.${Red}ext${Yel}] [${Bwhi}path/file_name_3${Yel}.${Red}ext${Yel}]"${Res}
       return 1
  else
       for n in $@
@@ -31,12 +29,12 @@ function extract {
                *.xz)        unxz ./"$n"        ;;
                *.exe)       cabextract ./"$n"  ;;
                *)
-                            echo -e $Red"extract: '$n' - unknown archive method"$Res
+                            echo -e ${Yel}"extract:${Whi} '$n'${Yel} -${Red} Unknown archive method!"${Res}
                             return 1
                             ;;
              esac
          else
-             echo -e $Red"'$n' - file does not exist"$Res
+             echo -e ${Whi}"'$n'${Yel} - ${Red}File does not exist..."${Res}
              return 1
         fi
       done
@@ -46,21 +44,25 @@ function extract {
 ## Make a new directory and change into it
 function go () {
 	if [ -d $1 ]; then
-		echo -e $Eyel"The directory $1 already exists"$Res
-		cd $1
+		echo -e ${Yel}"The directory $1 already exists..."${Res}
+		cd $1 || return 13
 	else
 		mkdir -pv $1 && cd $1 || return 13
-		echo -e $Eyel"$(pwd)"
+		echo -e ${Yel}"$(pwd)"
 	fi
 }
 
-## Testing a new clone function to prevent having to type the full domain name each time
+## Prevent having to type the full domain name each time
 function clone () {
 	git clone https://github.com/"$@"
+	dir=$(echo "$@" | cut -d '/' -f 2)
+	cd $dir || return 13
 }
 
 function lab () {
 	git clone https://gitlab.com/"$@"
+	dir=$(echo "$@" | cut -d '/' -f 2)
+	cd $dir || return 13
 }
 
 function bash_stats() {
@@ -92,11 +94,11 @@ function my_ps () {
 }
 
 function batch_chmod() {
-	echo -ne "${Eblu}Applying 0755 permission for all directories..."
+	echo -ne "${Blu}Applying 0755 permission for all directories..."
 	(find . -type d -print0 | xargs -0 chmod 0755) &
 	spinner
 	echo -ne "${Res}"
-	echo -ne "${Eblu}Applying 0644 permission for all files..."
+	echo -ne "${Blu}Applying 0644 permission for all files..."
 	(find . -type f -print0 | xargs -0 chmod 0644) &
 	spinner
 	echo -ne "${Res}"
